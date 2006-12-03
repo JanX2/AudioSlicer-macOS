@@ -1,0 +1,52 @@
+{
+    IBClasses = (
+        {
+            CLASS = AudioSegmentOutlineView; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSOutlineView; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = IntervalSlider; LANGUAGE = ObjC; SUPERCLASS = NSSlider; }, 
+        {CLASS = IntervalSliderCell; LANGUAGE = ObjC; SUPERCLASS = NSSliderCell; }, 
+        {
+            ACTIONS = {playButtonClicked = id; splitButtonClicked = id; }; 
+            CLASS = OutlineViewController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {document = SplitDocument; itemPlaying = id; outlineView = NSOutlineView; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = SplitButtonTableColumn; LANGUAGE = ObjC; SUPERCLASS = NSTableColumn; }, 
+        {
+            ACTIONS = {
+                collapseSelection = id; 
+                expandSelection = id; 
+                exportSplitted = id; 
+                joinSelection = id; 
+                modalCancel = id; 
+                modalOK = id; 
+                playNextSilence = id; 
+                playPrevSilence = id; 
+                renameSlicesSerially = id; 
+                setPlaySilenceInterval = id; 
+                setSilenceRange = id; 
+                splitSelection = id; 
+            }; 
+            CLASS = SplitDocument; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                exportPanelView = NSView; 
+                maxSilenceField = NSTextField; 
+                minSilenceField = NSTextField; 
+                outlineView = NSOutlineView; 
+                outlineViewController = OutlineViewController; 
+                playAfterSilenceField = NSTextField; 
+                playBeforeSilenceField = NSTextField; 
+                renameSeriallyPanel = NSPanel; 
+                renameSeriallyStartName = NSTextField; 
+                silenceRangeSlider = IntervalSlider; 
+            }; 
+            SUPERCLASS = NSDocument; 
+        }
+    ); 
+    IBVersion = 1; 
+}

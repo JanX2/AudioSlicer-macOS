@@ -1,0 +1,19 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {cancel = id; }; 
+            CLASS = ProgressPanel; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                messageTextField = NSTextField; 
+                modalDelegate = id; 
+                progressIndicator = NSProgressIndicator; 
+                titleTextField = NSTextField; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {CLASS = "java.lang.Object"; LANGUAGE = Java; }
+    ); 
+    IBVersion = 1; 
+}

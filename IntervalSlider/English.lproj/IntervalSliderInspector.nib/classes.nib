@@ -1,0 +1,16 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = IntervalSliderInspector; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                endValueField = NSTextField; 
+                logarithmicCheckbox = NSButton; 
+                startValueField = NSTextField; 
+            }; 
+            SUPERCLASS = IBInspector; 
+        }
+    ); 
+    IBVersion = 1; 
+}

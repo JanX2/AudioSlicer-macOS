@@ -1,0 +1,20 @@
+Changelog:
+
+Changes in version 1.1
+----------------------
+* Universal binary (works now on Intel Macs)
+* Recoded silence analyzer to run optimally multi-threadd on multi-core machines
+* Reengineered build process of required libraries to happen automatically in xcode
+* Added a link to open the new manual pdf from the help menu
+* Switched from id3lib to taglib for unicode support (chinese and other wide-char languages are fine now)
+* Several minor bugfixes
+
+Changes in version 1.0.3
+------------------------
+* Fixed a bug which caused AudioSlicer to hang on 10.4 at abortion of audio play
+* Added partnermine.com adverts - sorry guys, but it's really not annoying and I want some use out of this too.
+
+Changes in version 1.0.2
+------------------------
+* Fixed a bug which caused the first 1-2 seconds of the first slice to be dropped. This doesn't fix saved files, so you have to re-analyze them to make
+this fix work for them.

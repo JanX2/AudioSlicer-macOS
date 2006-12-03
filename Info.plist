@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>split</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>SplitDocument</string>
+			<key>CFBundleTypeName</key>
+			<string>AudioSlicer Document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>NSDocumentClass</key>
+			<string>SplitDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>mp3</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>MP3Document</string>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>audio/mpeg</string>
+				<string>audio/x-mpeg</string>
+				<string>audio/mpeg3</string>
+				<string>audio/x-mpeg3</string>
+				<string>audio/mpg</string>
+				<string>audio/x-mpg</string>
+				<string>audio/mp3</string>
+				<string>audio/x-mp3</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>MP3 Document</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>mp3!</string>
+				<string>MP3!</string>
+				<string>MPG3</string>
+				<string>mpg3</string>
+				<string>Mp3 </string>
+				<string>MP3 </string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>NSDocumentClass</key>
+			<string>SplitDocument</string>
+		</dict>
+	</array>
+	<key>CFBundleExecutable</key>
+	<string>AudioSlicer</string>
+	<key>CFBundleIconFile</key>
+	<string>Application</string>
+	<key>CFBundleIdentifier</key>
+	<string>net.sourceforge.audioslicer</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>ASLC</string>
+	<key>CFBundleVersion</key>
+	<string>1.1</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+</dict>
+</plist>

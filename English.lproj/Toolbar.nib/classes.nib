@@ -1,0 +1,18 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {playNextSilence = id; playPrevSilence = id; }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = NSSegmentedControl; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
+        {
+            CLASS = SplitDocumentToolbar; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {prevNextSilenceControl = NSSegmentedControl; volumeSlider = NSSlider; }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}
