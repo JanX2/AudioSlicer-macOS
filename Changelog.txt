@@ -1,5 +1,9 @@
 Changelog:
 
+Changes in version 1.1.1
+------------------------
+* Fixed a bug which caused AudioSlicer to crash if no ID3 tag was found in the mp3 file.
+
 Changes in version 1.1
 ----------------------
 * Universal binary (works now on Intel Macs)

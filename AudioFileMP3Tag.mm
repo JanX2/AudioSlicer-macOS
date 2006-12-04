@@ -73,44 +73,46 @@ if ([tagDict objectForKey:dictKey] != nil) { \
 	NSMutableDictionary	*tagDict = [[[NSMutableDictionary alloc] init] autorelease];
 	
 	TagLib::MPEG::File	*f = new TagLib::MPEG::File([path fileSystemRepresentation]);
+	
 	TagLib::ID3v2::Tag	*tag = f->ID3v2Tag();
-	
-	READ_STR_TAG("TIT2", @"Title");
-	READ_STR_TAG("TPE1", @"Artist");
-	READ_STR_TAG("TALB", @"Album");
-	READ_STR_TAG("TCOM", @"Composer");
-	READ_INT_TAG("TDRC", @"Year");
-	
-	if (!tag->genre().isNull()) {
-		[tagDict setObject:[NSString stringWithUTF8String:(tag->genre().toCString(true))] forKey:@"Genre"];
-	}
-	
-	if (HAS_TAG("TRCK")) {
-		NSArray	 *arr = [GET_STR_TAG("TRCK") componentsSeparatedByString:@"/"];
-		if ([arr count] > 0) {
-			[tagDict setObject:[NSNumber numberWithInt:[[arr objectAtIndex:0] intValue]] forKey:@"TrackNumber"];
+	if (tag != NULL) {
+		READ_STR_TAG("TIT2", @"Title");
+		READ_STR_TAG("TPE1", @"Artist");
+		READ_STR_TAG("TALB", @"Album");
+		READ_STR_TAG("TCOM", @"Composer");
+		READ_INT_TAG("TDRC", @"Year");
+		
+		if (!tag->genre().isNull()) {
+			[tagDict setObject:[NSString stringWithUTF8String:(tag->genre().toCString(true))] forKey:@"Genre"];
 		}
-		if ([arr count] > 1) {
-			[tagDict setObject:[NSNumber numberWithInt:[[arr objectAtIndex:1] intValue]] forKey:@"TrackCount"];
+		
+		if (HAS_TAG("TRCK")) {
+			NSArray	 *arr = [GET_STR_TAG("TRCK") componentsSeparatedByString:@"/"];
+			if ([arr count] > 0) {
+				[tagDict setObject:[NSNumber numberWithInt:[[arr objectAtIndex:0] intValue]] forKey:@"TrackNumber"];
+			}
+			if ([arr count] > 1) {
+				[tagDict setObject:[NSNumber numberWithInt:[[arr objectAtIndex:1] intValue]] forKey:@"TrackCount"];
+			}
 		}
-	}
-	
-	if (HAS_TAG("TPOS")) {
-		NSArray	 *arr = [GET_STR_TAG("TPOS") componentsSeparatedByString:@"/"];
-		if ([arr count] > 0) {
-			[tagDict setObject:[NSNumber numberWithInt:[[arr objectAtIndex:0] intValue]] forKey:@"CdNumber"];
+		
+		if (HAS_TAG("TPOS")) {
+			NSArray	 *arr = [GET_STR_TAG("TPOS") componentsSeparatedByString:@"/"];
+			if ([arr count] > 0) {
+				[tagDict setObject:[NSNumber numberWithInt:[[arr objectAtIndex:0] intValue]] forKey:@"CdNumber"];
+			}
+			if ([arr count] > 1) {
+				[tagDict setObject:[NSNumber numberWithInt:[[arr objectAtIndex:1] intValue]] forKey:@"CdCount"];
+			}
 		}
-		if ([arr count] > 1) {
-			[tagDict setObject:[NSNumber numberWithInt:[[arr objectAtIndex:1] intValue]] forKey:@"CdCount"];
-		}
-	}
-	
-	TagLib::ID3v2::FrameList commentFrameList = tag->frameListMap()["COMM"];
-	for (TagLib::ID3v2::FrameList::ConstIterator it = commentFrameList.begin(); it != commentFrameList.end(); it++) {
-		TagLib::ID3v2::CommentsFrame *frame = static_cast<TagLib::ID3v2::CommentsFrame *>(*it);
-		if (frame->description().isEmpty()) {
-			[tagDict setObject:[NSString stringWithUTF8String:(frame->text().toCString(true))] forKey:@"Comment"];
-			break;
+		
+		TagLib::ID3v2::FrameList commentFrameList = tag->frameListMap()["COMM"];
+		for (TagLib::ID3v2::FrameList::ConstIterator it = commentFrameList.begin(); it != commentFrameList.end(); it++) {
+			TagLib::ID3v2::CommentsFrame *frame = static_cast<TagLib::ID3v2::CommentsFrame *>(*it);
+			if (frame->description().isEmpty()) {
+				[tagDict setObject:[NSString stringWithUTF8String:(frame->text().toCString(true))] forKey:@"Comment"];
+				break;
+			}
 		}
 	}
 	
