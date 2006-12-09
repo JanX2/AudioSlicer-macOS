@@ -361,6 +361,9 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 	if ([anItem action] == @selector(renumberSlicesSerially:)) {
 		return ([[self sliceSelection] count] > 1);
 	}
+	if ([anItem action] == @selector(breakDownSlices:) || [anItem action] == @selector(breakDownSlicesAgain:)) {
+		return ([[self sliceSelection] count] >= 1);
+	}
 	if ([anItem action] == @selector(playPrevSilence:)) {
 		return YES;
 	}
@@ -426,7 +429,6 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 
 - (IBAction)collapseSelection:(id)sender
 {
-	
 	[outlineViewController collapseSelectedItems];
 }
 
@@ -487,6 +489,41 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 		[slice setTrackNumber:startTrack++];
 	}
 	[[self undoManager] setActionName:@"Renumber Tracks Serially"];
+}
+
+- (IBAction)breakDownSlices:(id)sender
+{
+	[NSApp beginSheet:breakDownSlicesPanel
+	   modalForWindow:[self windowForSheet]
+		modalDelegate:nil
+	   didEndSelector:nil
+		  contextInfo:nil];
+	
+	if ([NSApp runModalForWindow:breakDownSlicesPanel] == NSRunStoppedResponse) {
+		// force end editing
+		if (![breakDownSlicesPanel makeFirstResponder:breakDownSlicesPanel]) {
+			[breakDownSlicesPanel endEditingFor:nil];
+		}
+		
+		[self breakDownSlicesAgain:self];
+	}
+	
+	[NSApp endSheet:breakDownSlicesPanel];
+	[breakDownSlicesPanel orderOut:self];
+}
+
+- (IBAction)breakDownSlicesAgain:(id)sender
+{
+	double averageDuration = [[NSUserDefaults standardUserDefaults] integerForKey:@"BreakDownSlicesSegmentDurationMinutes"] * 60.0;
+	double tolerance = [[NSUserDefaults standardUserDefaults] integerForKey:@"BreakDownSlicesSegmentDurationTolerance"]/100.0;
+	
+	NSMutableArray	*selectedSlices = [[[self sliceSelection] copy] autorelease];
+	NSEnumerator	*slices = [selectedSlices objectEnumerator];
+	AudioSlice		*slice;
+	while (slice = [slices nextObject]) {
+		[slice breakDownToAverageDuration:averageDuration tolerance:tolerance];
+	}
+	[[self undoManager] setActionName:@"Break Down Slices"];
 }
 
 #pragma mark -

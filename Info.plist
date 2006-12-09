@@ -68,7 +68,7 @@
 	<key>CFBundleSignature</key>
 	<string>ASLC</string>
 	<key>CFBundleVersion</key>
-	<string>1.1.1</string>
+	<string>1.2b1</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

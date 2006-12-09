@@ -47,6 +47,8 @@
 	IBOutlet NSPanel					*renameSeriallyPanel;
 	IBOutlet NSTextField				*renameSeriallyStartName;
 	
+	IBOutlet NSPanel					*breakDownSlicesPanel;
+	
 	SplitDocumentToolbar				*toolbar;
 	
 	AudioFile							*audioFile;
@@ -79,6 +81,8 @@
 - (IBAction)expandSelection:(id)sender;
 - (IBAction)renameSlicesSerially:(id)sender;
 - (IBAction)renumberSlicesSerially:(id)sender;
+- (IBAction)breakDownSlices:(id)sender;
+- (IBAction)breakDownSlicesAgain:(id)sender;
 
 - (IBAction)playPrevSilence:(id)sender;
 - (IBAction)playNextSilence:(id)sender;

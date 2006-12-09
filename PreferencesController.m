@@ -65,6 +65,8 @@
 			nil],							@"ExportFilenameFormatsPreset",
 		[NSArray array],					@"ExportFilenameFormatsCustom",
 		@"[trackNumber] - [title]",			@"PreferredExportFilenameFormat",
+		[NSNumber numberWithInt:5],			@"BreakDownSlicesSegmentDurationMinutes",
+		[NSNumber numberWithInt:15],		@"BreakDownSlicesSegmentDurationTolerance",
 		nil]];
 }
 

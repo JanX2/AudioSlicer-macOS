@@ -153,6 +153,43 @@ NSString *AudioSliceDidChangeNotification = @"AudioSliceDidChangeNotification";
 
 #pragma mark -
 
+- (void)breakDownToAverageDuration:(double)averageDuration tolerance:(double)tolerance
+{
+	int numAudioSegments = [audioSegmentTree numberOfAudioSegmentsInSlice:self];
+	
+	double duration = 0.0;
+	int bestSplitSegmentIndex = -1;
+	double bestSplitPointSilenceDuration;
+	for (int i = 0; i < numAudioSegments; i++) {
+		AudioSegmentNode *segment = [audioSegmentTree audioSegmentAtIndex:i inSlice:self];
+		double segmentDuration = [segment duration];
+		duration += segmentDuration;
+		if ([segment isMemberOfClass:[AudioSegmentNode class]] && [segment nodeType] == AudioSegmentNodeTypeSilence && ![segment doesSplit]) {
+			// try to find the longest silence in an interval +-tolerance around the ideal duration and split there
+			if (duration >= (averageDuration * (1.0 - tolerance))) {
+				if (bestSplitSegmentIndex < 0 || (bestSplitPointSilenceDuration <= segmentDuration)) {
+					bestSplitSegmentIndex = i;
+					bestSplitPointSilenceDuration = segmentDuration;
+					//NSLog(@"considering segment %d (%.2f) for split", bestSplitSegmentIndex, bestSplitPointSilenceDuration);
+				}
+				
+				if (duration >= (averageDuration * (1.0 + tolerance)) && (bestSplitSegmentIndex >= 0)) {
+					// split at the best silence segment
+					//NSLog(@"splitting after duration %.2f", duration);
+					[audioSegmentTree setSplitPointAtNode:[audioSegmentTree audioSegmentAtIndex:bestSplitSegmentIndex inSlice:self]];
+					
+					// prepare for breaking up the rest in another loop iteration
+					duration = 0.0;
+					i = bestSplitSegmentIndex + 1;
+					bestSplitSegmentIndex = -1;
+				}
+			}
+		}
+	}
+}
+
+#pragma mark -
+
 - (void)setLeftSilenceSegment:(AudioSegmentNode *)left
 {
 	if (left == nil || [left nodeType] == AudioSegmentNodeTypeSilence) {

@@ -43,13 +43,18 @@
 		</array>
 	</dict>
 	<key>IBLastGroupID</key>
-	<string>12</string>
+	<string>13</string>
+	<key>IBLockedObjects</key>
+	<array>
+		<integer>486</integer>
+	</array>
 	<key>IBOpenObjects</key>
 	<array>
 		<integer>458</integer>
 		<integer>71</integer>
+		<integer>486</integer>
 	</array>
 	<key>IBSystem Version</key>
-	<string>8K1124</string>
+	<string>8L2127</string>
 </dict>
 </plist>

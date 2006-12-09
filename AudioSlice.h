@@ -58,6 +58,8 @@ extern NSString *AudioSliceDidChangeNotification;
 
 - (NSUndoManager *)undoManager;
 
+- (void)breakDownToAverageDuration:(double)averageDuration tolerance:(double)tolerance;
+
 - (void)setLeftSilenceSegment:(AudioSegmentNode *)left;
 - (AudioSegmentNode *)leftSilenceSegment;
 - (void)setRightSilenceSegment:(AudioSegmentNode *)right;
