@@ -34,7 +34,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	// we use a slightly modified NumberFormatter that clips too small/big values to the limits without error message
-	[ClippingNumberFormatter poseAsClass:[NSNumberFormatter class]];
+	//[ClippingNumberFormatter poseAsClass:[NSNumberFormatter class]];
 	
 	// register value transformers
 	ZeroToEmptyStringTransformer	*zeroToEmptyStringTransformer = [[[ZeroToEmptyStringTransformer alloc] init] autorelease];
