@@ -49,7 +49,7 @@ static OSStatus coreAudioRenderProc(void *inRefCon, AudioUnitRenderActionFlags *
 
 @implementation AudioFile
 
-+ (unsigned long)uniqueFileIDForFile:(NSString *)path
++ (size_t)uniqueFileIDForFile:(NSString *)path
 {
 	return [[[[NSFileManager defaultManager] fileAttributesAtPath:path traverseLink:NO] objectForKey:NSFileSize] unsignedLongValue];
 }
@@ -113,11 +113,11 @@ static OSStatus coreAudioRenderProc(void *inRefCon, AudioUnitRenderActionFlags *
 				uint32_t seekIndexSize = [coder decodeIntForKey:@"seekIndexSize"];
 				seekIndexSize = CFSwapInt32BigToHost(seekIndexSize);
 				
-				unsigned int bufSize;
+				NSUInteger bufSize;
 				const uint8_t *buf = [coder decodeBytesForKey:@"seekIndex" returnedLength:&bufSize];
 				typedef struct {
-					mad_timer_t		time;
-					unsigned long   byteOffset;
+					mad_timer_t			time;
+					size_t				byteOffset;
 				} oldSeekIndexEntry;
 				oldSeekIndexEntry *ptr = (oldSeekIndexEntry *)buf;
 				
@@ -184,7 +184,7 @@ static OSStatus coreAudioRenderProc(void *inRefCon, AudioUnitRenderActionFlags *
 	return filePath;
 }
 
-- (unsigned long)uniqueFileID
+- (size_t)uniqueFileID
 {
 	return uniqueFileID;
 }
@@ -354,7 +354,7 @@ static OSStatus coreAudioRenderProc(void *inRefCon, AudioUnitRenderActionFlags *
 	return 0;
 }
 
-- (void)writePCMData:(void *)dataPtr length:(unsigned long)length
+- (void)writePCMData:(void *)dataPtr length:(size_t)length
 {
 	[audioBuffer writeData:dataPtr length:length];
 }
@@ -636,7 +636,7 @@ static OSStatus coreAudioRenderProc(void *inRefCon, AudioUnitRenderActionFlags *
 		[audioBuffer readDataInto:ioData->mData length:ioData->mDataByteSize];
 		bzero(ioData->mData, ioData->mDataByteSize);
 	} else {
-		unsigned long   len = [audioBuffer readDataInto:ioData->mData length:ioData->mDataByteSize];
+		size_t   len = [audioBuffer readDataInto:ioData->mData length:ioData->mDataByteSize];
 		if (len < ioData->mDataByteSize) {
 			bzero(ioData->mData + len, ioData->mDataByteSize - len);
 		}

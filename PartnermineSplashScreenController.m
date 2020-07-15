@@ -56,7 +56,7 @@
 	[[self window] center];
 	[self showWindow:self];
 	modalSession = [NSApp beginModalSessionForWindow:[self window]];
-	int result;
+	NSInteger result;
 	while ((result = [NSApp runModalSession:modalSession]) == NSRunContinuesResponse);
 	[NSApp endModalSession:modalSession];
 	

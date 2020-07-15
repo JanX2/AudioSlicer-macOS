@@ -44,6 +44,6 @@
 @class NSObject;
 
 @interface NSObject (AudioSegmentOutlineViewDelegate)
-- (NSColor *)outlineView:(NSOutlineView *)view backgroundColorForRow:(int)rowIndex;
+- (NSColor *)outlineView:(NSOutlineView *)view backgroundColorForRow:(NSInteger)rowIndex;
 - (BOOL)outlineView:(NSOutlineView *)view keyDown:(NSEvent *)keyEvent;
 @end

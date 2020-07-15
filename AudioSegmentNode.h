@@ -24,11 +24,12 @@
 #import <Foundation/Foundation.h>
 #import "SkipList.h"
 
-typedef enum {
+
+typedef NS_ENUM(NSUInteger, AudioSegmentNodeType) {
 	AudioSegmentNodeTypeSilence,
 	AudioSegmentNodeTypeAudio,
 	AudioSegmentNodeTypeCollection
-} AudioSegmentNodeType;
+};
 
 @interface AudioSegmentNode : NSObject <NSCopying, NSCoding> {
 	AudioSegmentNodeType	nodeType;
@@ -58,9 +59,9 @@ typedef enum {
 - (void)setDoesSplit:(BOOL)flag;
 - (BOOL)doesSplit;
 
-- (int)numberOfChildren;
-- (AudioSegmentNode *)childAtIndex:(int)index;
-- (int)indexOfChild:(AudioSegmentNode *)child;
+- (NSUInteger)numberOfChildren;
+- (AudioSegmentNode *)childAtIndex:(NSUInteger)index;
+- (NSUInteger)indexOfChild:(AudioSegmentNode *)child;
 
 - (void)addNodeToChildren:(AudioSegmentNode *)node;
 - (void)mergeChildWithNeighbours:(AudioSegmentNode *)node;

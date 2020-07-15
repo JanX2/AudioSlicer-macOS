@@ -26,7 +26,7 @@
 
 @implementation SplitButtonTableColumn
 
-- (id)dataCellForRow:(int)row
+- (id)dataCellForRow:(NSInteger)row
 {
 	NSOutlineView   *view = (NSOutlineView *)[self tableView];
 	id		item = [view itemAtRow:row];

@@ -279,7 +279,7 @@
 	[[self controlView] unlockFocus];
 }
 
-- (float)knobThickness
+- (CGFloat)knobThickness
 {
 	return [self knobSizeForControlSize].width;
 }
@@ -321,7 +321,7 @@
 - (NSSize)knobSizeForControlSize
 {
 	NSSize  newSize = [[IntervalSliderCell startKnobImageOn] size];
-	float   aspectRatio = newSize.height / newSize.width;
+	CGFloat   aspectRatio = newSize.height / newSize.width;
 	
 	newSize.height = [self trackRect].size.height;
 	newSize.width = newSize.height / aspectRatio;
@@ -331,7 +331,7 @@
 
 #pragma mark -
 
-- (double)pixelToValue:(float)pixel
+- (double)pixelToValue:(CGFloat)pixel
 {
 	if (logarithmicScale) {
 		double	scale = ([self trackRect].size.width - (2 * [self knobThickness])) / ([self maxValue] - [self minValue]);
@@ -342,7 +342,7 @@
 	}
 }
 
-- (float)valueToPixel:(double)value
+- (CGFloat)valueToPixel:(double)value
 {
 	if (logarithmicScale) {
 		double	scale = ([self trackRect].size.width - (2 * [self knobThickness])) / ([self maxValue] - [self minValue]);

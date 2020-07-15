@@ -62,6 +62,7 @@
 	
 	[outlineView setAutosaveTableColumns:YES];
 	[outlineView setAutosaveName:@"OutlineView"];
+#warning 64BIT: Check formatting arguments
 	[outlineView setAutosaveName:[NSString stringWithFormat:@"OutlineView-%u", [document documentID]]];
 	
 	[outlineView setTarget:self];
@@ -106,8 +107,8 @@
 	[outlineView removeAllToolTips];
 	[outlineView reloadData];
 	
-	int		i;
-	int		itemCount = [self outlineView:outlineView numberOfChildrenOfItem:nil];
+	NSInteger		i;
+	NSInteger		itemCount = [self outlineView:outlineView numberOfChildrenOfItem:nil];
 	for (i = 0; i < itemCount; i++) {
 		id  item = [self outlineView:outlineView child:i ofItem:nil];
 		if ([self outlineView:outlineView isItemExpandable:item]) {
@@ -126,7 +127,7 @@
 
 - (AudioSegmentNode *)prevSilence
 {
-	int		row;
+	NSInteger		row;
 	
 	if ([outlineView selectedRow] == -1) {
 		row = [outlineView numberOfRows];
@@ -148,7 +149,7 @@
 
 - (AudioSegmentNode *)nextSilence
 {
-	int		row;
+	NSInteger		row;
 	
 	if ([outlineView selectedRow] == -1) {
 		row = 0;
@@ -174,7 +175,7 @@
 {
 	NSIndexSet		*selection = [outlineView selectedRowIndexes];
 	NSMutableArray  *items = [NSMutableArray arrayWithCapacity:[selection count]];
-	unsigned int	currentIndex = [selection firstIndex];
+	NSUInteger		currentIndex = [selection firstIndex];
 	while (currentIndex != NSNotFound) {
 		[items addObject:[outlineView itemAtRow:currentIndex]];
 		currentIndex = [selection indexGreaterThanIndex:currentIndex];
@@ -205,7 +206,7 @@
 	id					item;
 	
 	while (item = [items nextObject]) {
-		int		row = [outlineView rowForItem:item];
+		NSInteger		row = [outlineView rowForItem:item];
 		if (row >= 0) {
 			[selectionIndex addIndex:row];
 		}
@@ -219,7 +220,7 @@
 - (BOOL)canJoinSelectedItems
 {
 	NSIndexSet		*selection = [outlineView selectedRowIndexes];
-	unsigned int	currentIndex = [selection firstIndex];
+	NSUInteger	currentIndex = [selection firstIndex];
 	while (currentIndex != NSNotFound) {
 		id  item = [outlineView itemAtRow:currentIndex];
 		if ([item isMemberOfClass:[AudioSegmentNode class]] && [item nodeType] == AudioSegmentNodeTypeSilence && [item doesSplit]) {
@@ -233,7 +234,7 @@
 - (BOOL)canSplitSelectedItems
 {
 	NSIndexSet		*selection = [outlineView selectedRowIndexes];
-	unsigned int	currentIndex = [selection firstIndex];
+	NSUInteger	currentIndex = [selection firstIndex];
 	while (currentIndex != NSNotFound) {
 		id  item = [outlineView itemAtRow:currentIndex];
 		if ([item isMemberOfClass:[AudioSegmentNode class]] && [item nodeType] == AudioSegmentNodeTypeSilence && ![item doesSplit]) {
@@ -273,7 +274,7 @@
 		if ([item isMemberOfClass:[AudioSegmentNode class]] && [item nodeType] == AudioSegmentNodeTypeSilence && ![item doesSplit]) {
 			[audioSegmentTree setSplitPointAtNode:item];
 		} else if ([item isMemberOfClass:[AudioSlice class]]) {
-			for (int j = [audioSegmentTree numberOfAudioSegmentsInSlice:item] - 1; j >= 0; j--) {
+			for (NSInteger j = [audioSegmentTree numberOfAudioSegmentsInSlice:item] - 1; j >= 0; j--) {
 				AudioSegmentNode	*s = [audioSegmentTree audioSegmentAtIndex:j inSlice:item];
 				if ([s nodeType] == AudioSegmentNodeTypeSilence && ![s doesSplit]) {
 					[audioSegmentTree setSplitPointAtNode:s];
@@ -290,7 +291,7 @@
 - (BOOL)canCollapseSelectedItems
 {
 	NSIndexSet		*selection = [outlineView selectedRowIndexes];
-	unsigned int	currentIndex = [selection firstIndex];
+	NSUInteger	currentIndex = [selection firstIndex];
 	while (currentIndex != NSNotFound) {
 		id  item = [outlineView itemAtRow:currentIndex];
 		if ([outlineView isExpandable:item] && [outlineView isItemExpanded:item]) {
@@ -304,7 +305,7 @@
 - (BOOL)canExpandSelectedItems
 {
 	NSIndexSet		*selection = [outlineView selectedRowIndexes];
-	unsigned int	currentIndex = [selection firstIndex];
+	NSUInteger	currentIndex = [selection firstIndex];
 	while (currentIndex != NSNotFound) {
 		id  item = [outlineView itemAtRow:currentIndex];
 		if ([outlineView isExpandable:item] && ![outlineView isItemExpanded:item]) {
@@ -393,18 +394,18 @@
 
 #pragma mark -
 
-- (int)outlineView:(NSOutlineView *)view numberOfChildrenOfItem:(id)item
+- (NSInteger)outlineView:(NSOutlineView *)view numberOfChildrenOfItem:(id)item
 {
 	if (item == nil) {
 		// root level, return number of Slices plus number of silences between
-		return ([audioSegmentTree numberOfSlices] * 2) - 1;
+		return MAX(0, ([audioSegmentTree numberOfSlices] * 2) - 1);
 	} else {
 		// item is a AudioSlice
 		return [audioSegmentTree numberOfAudioSegmentsInSlice:item];
 	}
 }
 
-- (id)outlineView:(NSOutlineView *)view child:(int)index ofItem:(id)item
+- (id)outlineView:(NSOutlineView *)view child:(NSInteger)index ofItem:(id)item
 {
 	if (item == nil) {
 		// root level, return Slice or a silence AudioSegmentNode
@@ -557,7 +558,7 @@
 }
 
 
-- (NSColor *)outlineView:(NSOutlineView *)view backgroundColorForRow:(int)rowIndex
+- (NSColor *)outlineView:(NSOutlineView *)view backgroundColorForRow:(NSInteger)rowIndex
 {
 	id			item = [view itemAtRow:rowIndex];
 	

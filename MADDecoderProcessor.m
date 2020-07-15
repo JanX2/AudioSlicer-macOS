@@ -41,8 +41,8 @@ static enum mad_flow mad_error_callback(void *data, struct mad_stream *stream, s
 + (mad_timer_t)secondsToTimer:(double)secs
 {
 	mad_timer_t		timer;
-	unsigned long   s = (int)secs;
-	unsigned long   ms = (int)((secs - s) * 1000.0);
+	unsigned long   s = (unsigned long)secs;
+	unsigned long   ms = (unsigned long)((secs - s) * 1000.0);
 	mad_timer_set(&timer, s, ms, 1000);
 	return timer;
 }
@@ -313,7 +313,7 @@ static enum mad_flow mad_error_callback(void *data, struct mad_stream *stream, s
 	unsigned int		nsamples = pcm->length;
 	mad_fixed_t const   *left_ch = pcm->samples[0];
 	mad_fixed_t const   *right_ch = pcm->samples[1];
-	unsigned long		pcmBufLength = nsamples * MAD_NCHANNELS(header) * SAMPLE_SIZE;
+	size_t				pcmBufLength = nsamples * MAD_NCHANNELS(header) * SAMPLE_SIZE;
 	unsigned char		*pcmBuf = malloc(pcmBufLength);
 	unsigned char		*bufPtr = pcmBuf;
 	int					sample;
@@ -375,7 +375,7 @@ static enum mad_flow mad_error_callback(void *data, struct mad_stream *stream, s
 	[super dealloc];
 }
 
-- (void)setSilenceVolumeThreshold:(int)threshold
+- (void)setSilenceVolumeThreshold:(NSInteger)threshold
 {
 	silenceVolumeThreshold = threshold;
 }

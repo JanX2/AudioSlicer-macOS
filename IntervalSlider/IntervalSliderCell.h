@@ -35,7 +35,7 @@
 	BOOL			trackingStartKnob;
 	BOOL			trackingEndKnob;
 	BOOL			trackingBar;
-	float			trackingBarGrabPosition;
+	CGFloat			trackingBarGrabPosition;
 }
 
 - (double)intervalStart;
@@ -51,8 +51,8 @@
 
 - (NSSize)knobSizeForControlSize;
 
-- (double)pixelToValue:(float)pixel;
-- (float)valueToPixel:(double)value;
+- (double)pixelToValue:(CGFloat)pixel;
+- (CGFloat)valueToPixel:(double)value;
 
 + (NSImage *)startKnobImageOn;
 + (NSImage *)startKnobImageOff;

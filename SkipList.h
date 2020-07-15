@@ -36,28 +36,28 @@ typedef struct SkipListNode {
 
 @interface SkipList : NSObject <NSCopying, NSCoding> {
 	SkipListNode	*header;
-	int				level;
-	unsigned int	numElements;
+	NSInteger		level;
+	NSUInteger		numElements;
 	
 	SkipListNode	*enumerationNode;
 	
 	// hints for performance optimization
 	SkipListNode	*lastNode;
 	SkipListNode	*lastFingeredObject;
-	unsigned int	lastFingeredIndex;
+	NSUInteger		lastFingeredIndex;
 	
-	int				randomsLeft;
-	int				randomBits;
+	NSInteger		randomsLeft;
+	NSInteger		randomBits;
 }
 
 
 - (NSString *)description;
 
-- (unsigned)count;
+- (NSUInteger)count;
 - (id)firstObject;
 - (id)lastObject;
-- (id)objectAtIndex:(unsigned)index;
-- (unsigned)indexOfObjectIdenticalTo:(id)anObject;
+- (id)objectAtIndex:(NSUInteger)index;
+- (NSUInteger)indexOfObjectIdenticalTo:(id)anObject;
 
 - (void)addObject:(id)anObject;
 - (void)removeObject:(id)anObject;

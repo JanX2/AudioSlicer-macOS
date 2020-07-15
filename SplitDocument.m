@@ -48,8 +48,8 @@
 @interface SplitDocument (Private)
 - (void)updateUI;
 - (void)continuousControlFinished:(NSNotification *)notification;
-- (NSString *)findLostAudioFile:(NSString *)lostPath uniqueID:(unsigned long)lostFileID;
-- (void)exportPanelDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;
+- (NSString *)findLostAudioFile:(NSString *)lostPath uniqueID:(size_t)lostFileID;
+- (void)exportPanelDidEnd:(NSOpenPanel *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo;
 - (void)writeSplitFilesTo:(NSString *)dirPath hideExtension:(BOOL)hideExtension;
 - (NSString *)filenameUsingFormat:(NSString *)format forSlice:(AudioSlice *)slice;
 - (void)modelDidChange:(NSNotification *)notification;
@@ -123,7 +123,7 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 	[[aController window] setDelegate:self];
 	if (documentID == 0) {
 		// give a document id for this new document, set frame like last window and auto-cascade
-		documentID = (unsigned long)[[NSDate date] timeIntervalSince1970];
+		documentID = (NSUInteger)[[NSDate date] timeIntervalSince1970];
 		[aController setWindowFrameAutosaveName:[NSString stringWithFormat:@"DocumentWindow-%lu", documentID]];
 		[self updateChangeCount:NSChangeDone];
 		[[aController window] setFrameUsingName:@"DocumentWindow"];
@@ -151,7 +151,7 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 #if 0
 - (void)randomizeSelection:(void *)userInfo
 {
-	static int		row = 0;
+	static NSInteger		row = 0;
 	[outlineView selectRow:row byExtendingSelection:NO];
 	[outlineViewController playButtonClicked:outlineView];
 	row += 2;
@@ -160,7 +160,7 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 	}
 	return;
 	
-	row += ((int)(4.0 * ((double)rand() / RAND_MAX))) - 2;
+	row += ((NSInteger)(4.0 * ((double)rand() / RAND_MAX))) - 2;
 	if (row < 0) {
 		row = 20;
 	}
@@ -169,11 +169,11 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 	}
 	return;
 	
-	int		rowCount = [outlineView numberOfRows];
-	int		count = 1;(int)(10.0 * ((double)rand() / RAND_MAX));
+	NSInteger		rowCount = [outlineView numberOfRows];
+	NSInteger		count = 1;(NSInteger)(10.0 * ((double)rand() / RAND_MAX));
 	[outlineView deselectAll:self];
 	while (count--) {
-		int		row = (int)(rowCount * ((double)rand() / RAND_MAX));
+		NSInteger		row = (NSInteger)(rowCount * ((double)rand() / RAND_MAX));
 		[outlineView selectRow:row
 		  byExtendingSelection:YES];
 	}
@@ -376,7 +376,7 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 
 #pragma mark -
 
-- (unsigned long)documentID
+- (NSUInteger)documentID
 {
 	return documentID;
 }
@@ -462,14 +462,17 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 		
 		NSString	*prefix = [startName substringToIndex:numberRange.location];
 		NSString	*suffix = [startName substringFromIndex:numberRange.location + numberRange.length];
-		int			index = [[startName substringWithRange:numberRange] intValue];
+		NSInteger			index = [[startName substringWithRange:numberRange] integerValue];
+#warning 64BIT: Check formatting arguments
 		NSString	*format = [NSString stringWithFormat:@"%%0%dd", [[NSUserDefaults standardUserDefaults] integerForKey:@"RenameSeriallyPaddingLength"]];
 		
 		NSEnumerator	*slices = [[self sliceSelection] objectEnumerator];
 		AudioSlice		*slice;
 		while (slice = [slices nextObject]) {
+#warning 64BIT: Check formatting arguments
 			[slice setTitle:[NSString stringWithFormat:@"%@%@%@",
 				prefix,
+#warning 64BIT: Check formatting arguments
 				[NSString stringWithFormat:format, index++],
 				suffix]];
 		}
@@ -484,7 +487,7 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 {
 	NSEnumerator	*slices = [[self sliceSelection] objectEnumerator];
 	AudioSlice		*slice;
-	int				startTrack = [[[self sliceSelection] objectAtIndex:0] trackNumber];
+	NSInteger				startTrack = [[[self sliceSelection] objectAtIndex:0] trackNumber];
 	while (slice = [slices nextObject]) {
 		[slice setTrackNumber:startTrack++];
 	}
@@ -718,7 +721,7 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 	continuousControlStartValue1 = -1.0;
 }
 
-- (NSString *)findLostAudioFile:(NSString *)lostPath uniqueID:(unsigned long)lostFileID
+- (NSString *)findLostAudioFile:(NSString *)lostPath uniqueID:(size_t)lostFileID
 {
 	while (1) {
 		NSOpenPanel		*choosePanel = [NSOpenPanel openPanel];
@@ -731,9 +734,9 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 		[choosePanel setPrompt:@"Choose"];
 		[choosePanel setNameFieldLabel:@"Choose:"];
 		
-		int result = [choosePanel runModalForDirectory:[lostPath stringByDeletingLastPathComponent]
-												  file:nil
-												 types:[NSArray arrayWithObject:[audioFile fileExtension]]];
+		NSInteger result = [choosePanel runModalForDirectory:[lostPath stringByDeletingLastPathComponent]
+														file:nil
+													   types:[NSArray arrayWithObject:[audioFile fileExtension]]];
 		if (result == NSOKButton) {
 			return [[choosePanel filenames] objectAtIndex:0];
 		} else {
@@ -742,7 +745,7 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 	}
 }
 
-- (void)exportPanelDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+- (void)exportPanelDidEnd:(NSOpenPanel *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
 	[sheet orderOut:self];
 	[sheet setAccessoryView:nil];
@@ -787,7 +790,7 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 												 maxValue:[audioSegmentTree numberOfSlices]];
 	[progressPanel beginModalSheetForWindow:[self windowForSheet]];
 	
-	for (int i = 0; i < [audioSegmentTree numberOfSlices]; i++) {
+	for (NSInteger i = 0; i < [audioSegmentTree numberOfSlices]; i++) {
 		AudioSlice			*s = [audioSegmentTree sliceAtIndex:i];
 		AudioSegmentNode	*left = [s leftSilenceSegment];
 		AudioSegmentNode	*right = [s rightSilenceSegment];
@@ -812,7 +815,7 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 		}
 		
 		if ([[NSFileManager defaultManager] fileExistsAtPath:filePath] && overwriteAll == NO) {
-			int result = NSRunAlertPanel(@"File Exists", [NSString stringWithFormat:@"The File '%@' exists already. Do you really want to go on and overwrite it?", filePath],
+			NSInteger result = NSRunAlertPanel(@"File Exists", [NSString stringWithFormat:@"The File '%@' exists already. Do you really want to go on and overwrite it?", filePath],
 										 @"Cancel", @"Overwrite All", @"Overwrite");
 			if (result == NSAlertDefaultReturn) {
 				break;
@@ -832,8 +835,8 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 - (NSString *)filenameUsingFormat:(NSString *)format forSlice:(AudioSlice *)slice
 {
 	NSMutableString		*name = [[format mutableCopy] autorelease];
-	int					trackNumberDigits = [(NSString *)[NSString stringWithFormat:@"%d", [slice trackCount]] length];
-	int					cdNumberDigits = [(NSString *)[NSString stringWithFormat:@"%d", [slice cdCount]] length];
+	NSUInteger			trackNumberDigits = [(NSString *)[NSString stringWithFormat:@"%ld", [slice trackCount]] length];
+	NSUInteger			cdNumberDigits = [(NSString *)[NSString stringWithFormat:@"%ld", [slice cdCount]] length];
 	NSString			*key;
 	NSEnumerator		*keys = [[NSArray arrayWithObjects:@"title", @"artist", @"album", @"composer", @"genre", @"year",
 														   @"trackNumber", @"trackCount", @"cdNumber", @"cdCount",
@@ -843,9 +846,9 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 		id  replacement = [slice valueForKey:key];
 		if (replacement) {
 			if (trackNumberDigits > 0 && [key isEqualToString:@"trackNumber"]) {
-				replacement = [NSString stringWithFormat:[NSString stringWithFormat:@"%%0%dd", trackNumberDigits], [replacement intValue]];
+				replacement = [NSString stringWithFormat:[NSString stringWithFormat:@"%%0%lud", (unsigned long)trackNumberDigits], [replacement integerValue]];
 			} else if (cdNumberDigits > 0 && [key isEqualToString:@"cdNumber"]) {
-				replacement = [NSString stringWithFormat:[NSString stringWithFormat:@"%%0%dd", cdNumberDigits], [replacement intValue]];
+				replacement = [NSString stringWithFormat:[NSString stringWithFormat:@"%%0%lud", (unsigned long)cdNumberDigits], [replacement integerValue]];
 			}
 		} else {
 			replacement = @"";

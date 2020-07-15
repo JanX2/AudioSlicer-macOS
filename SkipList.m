@@ -24,7 +24,7 @@
 #import "SkipList.h"
 
 @interface SkipList (Private)
-- (int)randomLevel;
+- (NSInteger)randomLevel;
 @end
 
 @implementation SkipList
@@ -38,7 +38,7 @@
 		numElements = 0;
 		level = 0;
 		allocNewSkipListNodeOfLevel(header, MaxNumberOfLevels);
-		for (int i = 0; i < MaxNumberOfLevels; i++) {
+		for (NSInteger i = 0; i < MaxNumberOfLevels; i++) {
 			header->forward[i] = nil;
 		}
 		
@@ -73,9 +73,9 @@
 {
 	if (self = [self init]) {
 		if ([coder allowsKeyedCoding]) {
-			unsigned int	objCount = [coder decodeIntForKey:@"objectCount"];
-			for (unsigned int i = 0; i < objCount; i++) {
-				[self addObject:[coder decodeObjectForKey:[NSString stringWithFormat:@"obj%u", i]]];
+			NSUInteger	objCount = [coder decodeIntegerForKey:@"objectCount"];
+			for (NSUInteger i = 0; i < objCount; i++) {
+				[self addObject:[coder decodeObjectForKey:[NSString stringWithFormat:@"obj%lu", i]]];
 			}
 		} else {
 			[NSException raise:NSInvalidArchiveOperationException format:@"Only supports NSKeyedArchiver coders"];
@@ -88,10 +88,10 @@
 - (void)encodeWithCoder:(NSCoder *)coder
 {
     if ([coder allowsKeyedCoding]) {
-        [coder encodeInt:numElements forKey:@"objectCount"];
-		unsigned int   i = 0;
+        [coder encodeInteger:numElements forKey:@"objectCount"];
+		NSUInteger   i = 0;
 		for (SkipListNode *n = header->forward[0]; n != nil; n = n->forward[0], i++) {
-			[coder encodeObject:n->obj forKey:[NSString stringWithFormat:@"obj%u", i]];
+			[coder encodeObject:n->obj forKey:[NSString stringWithFormat:@"obj%lu", i]];
 		}
 	} else {
         [NSException raise:NSInvalidArchiveOperationException format:@"Only supports NSKeyedArchiver coders"];
@@ -100,18 +100,18 @@
 
 - (NSString *)description
 {
-	NSMutableString	*desc = [NSMutableString stringWithFormat:@"SkipList (%u objects):\n", numElements];
+	NSMutableString	*desc = [NSMutableString stringWithFormat:@"SkipList (%lu objects):\n", numElements];
 	
-	unsigned int   i = 0;
+	NSUInteger   i = 0;
 	for (SkipListNode *n = header->forward[0]; n != nil; n = n->forward[0], i++) {
-		[desc appendFormat:@"%.4d: %@\n", i, n->obj];
+		[desc appendFormat:@"%.4lu: %@\n", i, n->obj];
 	}
 	
 	return desc;
 }
 
 
-- (unsigned)count
+- (NSUInteger)count
 {
 	return numElements;
 }
@@ -136,14 +136,14 @@
 	return lastNode->obj;
 }
 
-- (id)objectAtIndex:(unsigned)index
+- (id)objectAtIndex:(NSUInteger)index
 {
 	if (index < 0 || index > (numElements - 1)) {
 		[NSException raise:NSRangeException format:@"index out of array bounds"];
 		return nil;
 	}
 	
-	unsigned int	i = 0;
+	NSUInteger	i = 0;
 	SkipListNode	*n = header->forward[0];
 	
 	if (lastFingeredObject && index >= lastFingeredIndex) {
@@ -162,9 +162,9 @@
 	return nil;
 }
 
-- (unsigned)indexOfObjectIdenticalTo:(id)anObject
+- (NSUInteger)indexOfObjectIdenticalTo:(id)anObject
 {
-	unsigned int	i = 0;
+	NSUInteger	i = 0;
 	for (SkipListNode *n = header->forward[0]; n != nil; n = n->forward[0], i++) {
 		if (n->obj == anObject) {
 			return i;
@@ -179,7 +179,7 @@
 {
 	SkipListNode	*update[MaxNumberOfLevels];
 	SkipListNode	*n, *p;
-	int				i, l;
+	NSInteger				i, l;
 	
 	// find insert position
 	IMP		impComparator = [anObject methodForSelector:@selector(compare:)];
@@ -223,7 +223,7 @@
 {
 	SkipListNode	*update[MaxNumberOfLevels];
 	SkipListNode	*n;
-	int				i;
+	NSInteger				i;
 	
 	// find insert position
 	// we assume all elements are of same class
@@ -277,14 +277,14 @@
 	list1->lastNode = list2->lastNode;
 	
 	if (list1->level < list2->level) {
-		for (int i = list1->level + 1; i <= list2->level; i++) {
+		for (NSInteger i = list1->level + 1; i <= list2->level; i++) {
 			list1->header->forward[i] = nil;
 		}
 		list1->level = list2->level;
 	}
 	
 	SkipListNode	*n = list1->header;
-	for (int i = list1->level; i >= 0; i--) {
+	for (NSInteger i = list1->level; i >= 0; i--) {
 		while (n->forward[i] != nil) {
 			n = n->forward[i];
 		}
@@ -294,7 +294,7 @@
 	}
 	
 	// make appended lists appear empty, all elements were moved to this list
-	for (int i = 0; i < MaxNumberOfLevels; i++) {
+	for (NSInteger i = 0; i < MaxNumberOfLevels; i++) {
 		list2->header->forward[i] = nil;
 	}
 	list2->numElements = 0;
@@ -309,7 +309,7 @@
 	IMP				impComparator = [splitObject methodForSelector:@selector(compare:)];
 	
 	list2->level = list1->level;
-	for (int i = list1->level; i >= 0; i--) {
+	for (NSInteger i = list1->level; i >= 0; i--) {
 		while (n->forward[i] && (NSComparisonResult)impComparator(n->forward[i]->obj, @selector(compare:), splitObject) == NSOrderedAscending) {
 			n = n->forward[i];
 		}
@@ -317,7 +317,7 @@
 		n->forward[i] = nil;
 	}
 	
-	unsigned int	count = 0;
+	NSUInteger	count = 0;
 	for (SkipListNode *p = header->forward[0]; p != nil; p = p->forward[0], count++);
 	list2->numElements = list1->numElements - count;
 	list1->numElements = count;
@@ -341,7 +341,7 @@
 		free(n);
 	}
 	
-	for (int i = 0; i < MaxNumberOfLevels; i++) {
+	for (NSInteger i = 0; i < MaxNumberOfLevels; i++) {
 		header->forward[i] = nil;
 	}
 	numElements = 0;
@@ -374,10 +374,10 @@
 
 @implementation SkipList (Private)
 
-- (int)randomLevel
+- (NSInteger)randomLevel
 {
-	int		l = 0;
-	int		b;
+	NSInteger		l = 0;
+	NSInteger		b;
 	
 	do {
 		b = randomBits & 3;

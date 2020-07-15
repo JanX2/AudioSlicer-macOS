@@ -39,7 +39,7 @@
 	[testBuffer release];
 }
 
-- (id)initWithLength:(unsigned long)bufLength
+- (id)initWithLength:(size_t)bufLength
 {
 	if (self = [super init]) {
 		buffer = malloc(bufLength);
@@ -73,16 +73,16 @@
 	return (bytesInBuffer == 0);
 }
 
-- (unsigned long)readDataInto:(void *)buf length:(unsigned long)len
+- (size_t)readDataInto:(void *)buf length:(size_t)len
 {
-	int		readLength = 0;
+	size_t		readLength = 0;
 	
 	if ([semaphore tryLock] == NO) {
 		return 0;
 	}
 	
 	while (len > 0 && bytesInBuffer > 0) {
-		unsigned long   numBytes = 0;
+		size_t   numBytes = 0;
 		if (readPtr >= writePtr) {
 			numBytes = MIN(((buffer + length) - readPtr), len);
 		} else {
@@ -105,13 +105,13 @@
 	return readLength;
 }
 
-- (void)writeData:(void *)buf length:(unsigned long)len
+- (void)writeData:(void *)buf length:(size_t)len
 {
 	while (len > 0 && !abortWrite) {
 		[semaphore lock];
 		
 		if (bytesInBuffer < length) {
-			unsigned long   numBytes = 0;
+			size_t   numBytes = 0;
 			if (readPtr <= writePtr) {
 				numBytes = MIN(len, ((buffer + length) - writePtr));
 			} else {
@@ -155,13 +155,13 @@
 - (void)testReaderThread:(id)obj
 {
 	NSAutoreleasePool   *pool = [[NSAutoreleasePool alloc] init];
-	unsigned long		len;
+	size_t				len;
 	void				*ptr = malloc(1024);
 	
 	while (1) {
-		if (len = [self readDataInto:ptr length:1024]) {
-			NSLog(@"read from buffer: (%u) %@", len, [NSString stringWithCString:ptr length:len]);
-			for (int i = 1; i < len; i++) {
+		if ((len = [self readDataInto:ptr length:1024])) {
+			NSLog(@"read from buffer: (%zu) %@", len, [NSString stringWithCString:ptr length:len]);
+			for (NSInteger i = 1; i < len; i++) {
 				char	c1 = ((char *)ptr)[i - 1];
 				char	c2 = ((char *)ptr)[i];
 				NSAssert((c1 + 1 == c2) || (c1 == '8' && c2 == '1'), @"ERROR");
@@ -175,12 +175,12 @@
 - (void)testWriterThread:(id)obj
 {
 	NSAutoreleasePool   *pool = [[NSAutoreleasePool alloc] init];
-	unsigned long		len = 8;
+	size_t				len = 8;
 	void				*ptr = "12345678";
 	
-	for (int i = 0; i < 100000; i++) {
+	for (NSInteger i = 0; i < 100000; i++) {
 		[self writeData:ptr length:len];
-		NSLog(@"wrote to buffer: (%u) %@", len, [NSString stringWithCString:ptr length:len]);
+		NSLog(@"wrote to buffer: (%zu) %@", len, [NSString stringWithCString:ptr length:len]);
 	}
 	
 	[pool release];

@@ -69,8 +69,8 @@
 
 // NSOutlineViewDataSource
 
-- (int)outlineView:(NSOutlineView *)view numberOfChildrenOfItem:(id)item;
-- (id)outlineView:(NSOutlineView *)view child:(int)index ofItem:(id)item;
+- (NSInteger)outlineView:(NSOutlineView *)view numberOfChildrenOfItem:(id)item;
+- (id)outlineView:(NSOutlineView *)view child:(NSInteger)index ofItem:(id)item;
 - (BOOL)outlineView:(NSOutlineView *)view isItemExpandable:(id)item;
 - (id)outlineView:(NSOutlineView *)view objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item;
 - (void)outlineView:(NSOutlineView *)view setObjectValue:(id)object forTableColumn:(NSTableColumn *)tableColumn byItem:(id)item;
@@ -82,7 +82,7 @@
 - (void)outlineViewItemDidExpand:(NSNotification *)notification;
 - (void)outlineViewItemDidCollapse:(NSNotification *)notification;
 
-- (NSColor *)outlineView:(NSOutlineView *)view backgroundColorForRow:(int)rowIndex;
+- (NSColor *)outlineView:(NSOutlineView *)view backgroundColorForRow:(NSInteger)rowIndex;
 - (BOOL)outlineView:(NSOutlineView *)view keyDown:(NSEvent *)keyEvent;
 
 // MP3File delegate

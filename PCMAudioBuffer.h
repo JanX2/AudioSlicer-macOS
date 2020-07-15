@@ -26,8 +26,8 @@
 
 @interface PCMAudioBuffer : NSObject {
 	void				*buffer;
-	unsigned long		length;
-	unsigned long		bytesInBuffer;
+	size_t				length;
+	size_t				bytesInBuffer;
 	
 	void				*readPtr;
 	void				*writePtr;
@@ -38,12 +38,12 @@
 
 + (void)test;
 
-- (id)initWithLength:(unsigned long)bufLength;
+- (id)initWithLength:(size_t)bufLength;
 - (void)reset;
 - (BOOL)isEmpty;
 
-- (unsigned long)readDataInto:(void *)buf length:(unsigned long)len;
-- (void)writeData:(void *)buf length:(unsigned long)len;
+- (size_t)readDataInto:(void *)buf length:(size_t)len;
+- (void)writeData:(void *)buf length:(size_t)len;
 - (void)abortWrite;
 
 @end

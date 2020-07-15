@@ -41,7 +41,7 @@ extern NSString *AudioFileAnalyzingFinishedNotification;
 
 @interface AudioFile : NSObject <NSCoding> {
 	NSString			*filePath;
-	unsigned long		uniqueFileID;
+	size_t				uniqueFileID;
 	double				duration;   // duration of audio in seconds
 	AudioSegmentTree	*audioSegmentTree;
 	SeekIndex			*seekIndex;
@@ -74,7 +74,7 @@ extern NSString *AudioFileAnalyzingFinishedNotification;
 	id					delegate;
 }
 
-+ (unsigned long)uniqueFileIDForFile:(NSString *)path;
++ (size_t)uniqueFileIDForFile:(NSString *)path;
 
 + (id)audioFileWithPath:(NSString *)path;
 - (id)initWithPath:(NSString *)path;
@@ -85,7 +85,7 @@ extern NSString *AudioFileAnalyzingFinishedNotification;
 - (void)setDelegate:(id)obj;
 - (id)delegate;
 - (NSString *)filePath;
-- (unsigned long)uniqueFileID;
+- (size_t)uniqueFileID;
 - (void)fileHasMovedToPath:(NSString *)path;
 - (BOOL)hasFileChanged;
 - (AudioSegmentTree *)audioSegmentTree;
@@ -107,7 +107,7 @@ extern NSString *AudioFileAnalyzingFinishedNotification;
 - (void)foundSilenceFrom:(double)start to:(double)end;
 - (BOOL)canContinueDecoding;
 - (int)getNextOverlayedBeepSampleAtTime:(double)time;
-- (void)writePCMData:(void *)dataPtr length:(unsigned long)length;
+- (void)writePCMData:(void *)dataPtr length:(size_t)length;
 
 // methods to be implemented by subclasses
 

@@ -41,20 +41,20 @@
 {
 	[[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
 		[NSNumber numberWithDouble:1.1],	@"SilenceDurationThreshold",
-		[NSNumber numberWithInt:3],			@"SilenceVolumeThreshold",
+		[NSNumber numberWithInteger:3],			@"SilenceVolumeThreshold",
 		[NSNumber numberWithBool:YES],		@"PlaySilenceBeep",
 		[NSNumber numberWithDouble:2.0],	@"PlayBeforeSilenceDuration",
 		[NSNumber numberWithDouble:2.0],	@"PlayAfterSilenceDuration",
-		[NSNumber numberWithInt:66],		@"RelativeSilenceSplitPoint",
+		[NSNumber numberWithInteger:66],		@"RelativeSilenceSplitPoint",
 		[NSArray arrayWithObjects:
 			@"trackNumber", @"title",
 			@"split", @"play",
 			@"startTime", @"endTime", @"duration",
 			nil],							@"OutlineView-Identifiers",
 		[NSArray arrayWithObjects:
-			[NSNumber numberWithFloat:40.0], [NSNumber numberWithFloat:240.0],
-			[NSNumber numberWithFloat:0.0], [NSNumber numberWithFloat:0.0],
-			[NSNumber numberWithFloat:70.0], [NSNumber numberWithFloat:70.0], [NSNumber numberWithFloat:70.0],
+			[NSNumber numberWithDouble:40.0], [NSNumber numberWithDouble:240.0],
+			[NSNumber numberWithDouble:0.0], [NSNumber numberWithDouble:0.0],
+			[NSNumber numberWithDouble:70.0], [NSNumber numberWithDouble:70.0], [NSNumber numberWithDouble:70.0],
 			nil],							@"OutlineView-Widths",
 		[NSArray arrayWithObjects:
 			@"[trackNumber] - [title]",
@@ -65,8 +65,8 @@
 			nil],							@"ExportFilenameFormatsPreset",
 		[NSArray array],					@"ExportFilenameFormatsCustom",
 		@"[trackNumber] - [title]",			@"PreferredExportFilenameFormat",
-		[NSNumber numberWithInt:5],			@"BreakDownSlicesSegmentDurationMinutes",
-		[NSNumber numberWithInt:15],		@"BreakDownSlicesSegmentDurationTolerance",
+		[NSNumber numberWithInteger:5],			@"BreakDownSlicesSegmentDurationMinutes",
+		[NSNumber numberWithInteger:15],		@"BreakDownSlicesSegmentDurationTolerance",
 		nil]];
 }
 

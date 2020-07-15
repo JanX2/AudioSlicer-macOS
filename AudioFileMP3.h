@@ -30,7 +30,7 @@
 @interface AudioFileMP3 : AudioFile <NSCoding> {
 	// general file information
 	NSFileHandle			*fileHandle;
-	unsigned long			fileLength;
+	size_t					fileLength;
 	void					*fileData;
 	
 	MADDecoder				*madDecoder;

@@ -87,7 +87,7 @@
 	if ([str size].width > width) {
 		NSMutableAttributedString   *shortStr = [str mutableCopy];
 		NSFont						*font = [str attribute:NSFontAttributeName atIndex:0 effectiveRange:NULL];
-		int							charsToDelete = ([shortStr length] - (width / ([font maximumAdvancement].width / 3)) + 1) + 3;
+		NSInteger					charsToDelete = ([shortStr length] - (width / ([font maximumAdvancement].width / 3)) + 1) + 3;
 		NSRange						deleteRange = NSMakeRange(([shortStr length] - charsToDelete) / 2, charsToDelete);
 		
 		[shortStr replaceCharactersInRange:deleteRange withString:@"..."];

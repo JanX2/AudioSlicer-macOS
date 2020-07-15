@@ -59,7 +59,7 @@
 	double								playSilenceIntervalAfter;
 	double								relativeSilenceSplitPoint;
 	
-	unsigned long						documentID;
+	NSUInteger							documentID;
 	BOOL								documentWasModifiedDuringOpen;
 	
 	double								continuousControlStartValue1;
@@ -69,7 +69,7 @@
 	ProgressPanel						*progressPanel;
 }
 
-- (unsigned long)documentID;
+- (NSUInteger)documentID;
 
 - (IBAction)modalOK:(id)sender;
 - (IBAction)modalCancel:(id)sender;

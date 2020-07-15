@@ -68,16 +68,17 @@ static void *runProcessorThreaded(void *processor);
 #pragma mark -
 
 
-- (int)analyzeSilencesWithVolumeThreshold:(int)volumeThreshold durationThreshold:(double)durationThreshold
+- (NSInteger)analyzeSilencesWithVolumeThreshold:(NSInteger)volumeThreshold durationThreshold:(double)durationThreshold
 {
 	// set up the processors
 	numProcessors = [self numProcessorCores];
 	processors = (MADDecoderSilenceAnalyzer **) malloc(sizeof(MADDecoderSilenceAnalyzer *) * numProcessors);
+#warning 64BIT: Inspect use of sizeof
 	processorThreads = (pthread_t *) malloc(sizeof(pthread_t) * numProcessors);
 	progressValues = (double *) malloc(sizeof(double) * numProcessors);
 	
 	// split up the work among the processors
-	for (int i = 0; i < numProcessors; i++) {
+	for (NSUInteger i = 0; i < numProcessors; i++) {
 		uint32_t start = (([mp3Data length] / numProcessors) * i);
 		uint32_t end = start + ([mp3Data length] / numProcessors);
 		processors[i] = [[MADDecoderSilenceAnalyzer alloc] initWithDecoder:self startByteOffset:start endByteOffset:end];
@@ -87,25 +88,25 @@ static void *runProcessorThreaded(void *processor);
 	}
 	
 	// run all processors
-	for (int i = 0; i < numProcessors; i++) {
+	for (NSUInteger i = 0; i < numProcessors; i++) {
 		int err = pthread_create(&(processorThreads[i]), NULL, runProcessorThreaded, processors[i]);
 		if (err < 0) {
-			NSLog(@"failed to create thread %d for silence processor", i);
+			NSLog(@"failed to create thread %ld for silence processor", (long)i);
 		}
 	}
 	
 	// wait for all processors to finish
-	int result = 0;
-	for (int i = 0; i < numProcessors; i++) {
+	NSInteger result = 0;
+	for (NSUInteger i = 0; i < numProcessors; i++) {
 		void *exitCode;
 		int err = pthread_join(processorThreads[i], &exitCode);
 		if (err < 0) {
-			NSLog(@"failed to wait for thread %d with silence processor", i);
+			NSLog(@"failed to wait for thread %ld with silence processor", i);
 		}
 		
 		if (result == 0) {
 			if (exitCode != 0) {
-				result = (int)exitCode;
+				result = (NSInteger)exitCode;
 			}
 		}
 	}
@@ -114,7 +115,7 @@ static void *runProcessorThreaded(void *processor);
 	audioDuration = [processors[numProcessors - 1] currentTime];
 	
 	// clean up
-	for (int i = 0; i < numProcessors; i++) {
+	for (NSUInteger i = 0; i < numProcessors; i++) {
 		[processors[i] release];
 	}
 	free(processors);
@@ -146,7 +147,7 @@ static void *runProcessorThreaded(void *processor);
 {
 	// store the progress value depending on what thread submits it
 	if (processorThreads != NULL) {
-		for (int i = 0; i < numProcessors; i++) {
+		for (NSUInteger i = 0; i < numProcessors; i++) {
 			if (pthread_equal(pthread_self(), processorThreads[i]) != 0) {
 				value -= [processors[i] decodeStartByteOffset];
 				progressValues[i] = value;
@@ -168,7 +169,7 @@ static void *runProcessorThreaded(void *processor);
 {
 	if (processorThreads != NULL) {
 		double p = 0.0;
-		for (int i = 0; i < numProcessors; i++) {
+		for (NSUInteger i = 0; i < numProcessors; i++) {
 			p += progressValues[i];
 		}
 		
@@ -186,9 +187,9 @@ static void *runProcessorThreaded(void *processor);
 	[syncLock unlock];
 }
 
-- (int)numProcessorCores
+- (NSUInteger)numProcessorCores
 {
-	int count = 1;
+	NSUInteger count = 1;
 	size_t len = sizeof(count);
 	if (sysctlbyname("hw.ncpu", &count, &len, NULL, 0) != 0) {
 		return 1;
@@ -208,7 +209,7 @@ void *runProcessorThreaded(void *processor)
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	int result = [(MADDecoderProcessor *)processor runDecoder];
+	NSInteger result = [(MADDecoderProcessor *)processor runDecoder];
 	
 	[pool release];
 	

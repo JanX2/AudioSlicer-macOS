@@ -168,7 +168,7 @@ NSString *AudioSegmentTreeDidChangeNotification = @"AudioSegmentTreeDidChangeNot
 
 - (void)setSplitPointAtNode:(AudioSegmentNode *)node withSlice:(AudioSlice *)slice
 {
-	int				i = [self indexOfSliceForAudioSegment:node];
+	NSInteger				i = [self indexOfSliceForAudioSegment:node];
 	AudioSlice		*s1 = (AudioSlice *)[slices objectAtIndex:i];
 	AudioSlice		*s2;
 	
@@ -185,7 +185,7 @@ NSString *AudioSegmentTreeDidChangeNotification = @"AudioSegmentTreeDidChangeNot
 		if  ([strArr count] == 1) {
 			newTitle = [NSString stringWithFormat:@"%@ Copy", [s1 title]];
 		} else if ([strArr count] > 1) {
-			newTitle = [NSString stringWithFormat:@"%@ Copy %d", [strArr objectAtIndex:0], [[strArr lastObject] intValue] + 1];
+			newTitle = [NSString stringWithFormat:@"%@ Copy %ld", [strArr objectAtIndex:0], [[strArr lastObject] integerValue] + 1];
 		}
 		
 		s2 = [s1 copy];
@@ -214,7 +214,7 @@ NSString *AudioSegmentTreeDidChangeNotification = @"AudioSegmentTreeDidChangeNot
 
 - (void)clearSplitPointAtNode:(AudioSegmentNode *)node
 {
-	int			i = [self indexOfSliceForAudioSegment:node];
+	NSInteger			i = [self indexOfSliceForAudioSegment:node];
 	AudioSlice	*s1 = (AudioSlice *)[slices objectAtIndex:i];
 	AudioSlice	*s2 = (AudioSlice *)[slices objectAtIndex:(i + 1)];
 	
@@ -231,28 +231,28 @@ NSString *AudioSegmentTreeDidChangeNotification = @"AudioSegmentTreeDidChangeNot
 
 #pragma mark -
 
-- (int)numberOfSlices
+- (NSInteger)numberOfSlices
 {
 	return [slices count];
 }
 
-- (AudioSlice *)sliceAtIndex:(int)index
+- (AudioSlice *)sliceAtIndex:(NSInteger)index
 {
 	return [slices objectAtIndex:index];
 }
 
-- (int)indexOfSlice:(AudioSlice *)slice
+- (NSInteger)indexOfSlice:(AudioSlice *)slice
 {
 	return [slices indexOfObjectIdenticalTo:slice];
 }
 
-- (int)numberOfAudioSegmentsInSlice:(AudioSlice *)slice
+- (NSInteger)numberOfAudioSegmentsInSlice:(AudioSlice *)slice
 {
 	AudioSegmentNode	*left = [slice leftSilenceSegment];
 	AudioSegmentNode	*right = [slice rightSilenceSegment];
-	int					leftIndex = left ? [rootNode indexOfChild:left] : 0;
-	int					rightIndex = right ? [rootNode indexOfChild:right] : ([rootNode numberOfChildren] - 1);
-	int					count = rightIndex - leftIndex + 1;
+	NSInteger					leftIndex = left ? [rootNode indexOfChild:left] : 0;
+	NSInteger					rightIndex = right ? [rootNode indexOfChild:right] : ([rootNode numberOfChildren] - 1);
+	NSInteger					count = rightIndex - leftIndex + 1;
 	
 	if ([left doesSplit]) {
 		count--;
@@ -264,30 +264,30 @@ NSString *AudioSegmentTreeDidChangeNotification = @"AudioSegmentTreeDidChangeNot
 	return count;
 }
 
-- (AudioSegmentNode *)audioSegmentAtIndex:(int)index inSlice:(AudioSlice *)slice
+- (AudioSegmentNode *)audioSegmentAtIndex:(NSInteger)index inSlice:(AudioSlice *)slice
 {
 	AudioSegmentNode	*left = [slice leftSilenceSegment];
-	int					leftIndex = left ? [rootNode indexOfChild:left] : 0;
+	NSInteger					leftIndex = left ? [rootNode indexOfChild:left] : 0;
 	
 	return [rootNode childAtIndex:(leftIndex + index)];
 }
 
-- (int)numberOfAudioSegments
+- (NSInteger)numberOfAudioSegments
 {
 	return [rootNode numberOfChildren];
 }
 
-- (AudioSegmentNode *)audioSegmentAtIndex:(int)index
+- (AudioSegmentNode *)audioSegmentAtIndex:(NSInteger)index
 {
 	return [rootNode childAtIndex:index];
 }
 
-- (int)indexOfSliceForAudioSegment:(AudioSegmentNode *)node
+- (NSInteger)indexOfSliceForAudioSegment:(AudioSegmentNode *)node
 {
 	double		splitStartTime = [node startTime];
 	double		splitEndTime = [node endTime];
 	
-	for (int i = 0; i < [slices count]; i++) {
+	for (NSInteger i = 0; i < [slices count]; i++) {
 		AudioSlice			*s = (AudioSlice *)[slices objectAtIndex:i];
 		AudioSegmentNode	*left = [s leftSilenceSegment];
 		AudioSegmentNode	*right = [s rightSilenceSegment];
@@ -297,6 +297,7 @@ NSString *AudioSegmentTreeDidChangeNotification = @"AudioSegmentTreeDidChangeNot
 		}
 	}
 	
+#warning 64BIT: Check formatting arguments
 	[NSException raise:NSInternalInconsistencyException format:@"indexOfSliceForAudioSegment: didn't find node in any split segment"];
 	return -1;
 }
@@ -336,7 +337,7 @@ NSString *AudioSegmentTreeDidChangeNotification = @"AudioSegmentTreeDidChangeNot
 			[self addAudioSegmentFrom:0.0 to:[firstNode startTime]];
 		}
 		
-		for (unsigned int i = 0; i < ([rootNode numberOfChildren] - 1); i++) {
+		for (NSUInteger i = 0; i < ([rootNode numberOfChildren] - 1); i++) {
 			AudioSegmentNode	*thisNode = [rootNode childAtIndex:i];
 			AudioSegmentNode	*nextNode = [rootNode childAtIndex:(i + 1)];
 			
@@ -439,14 +440,16 @@ NSString *AudioSegmentTreeDidChangeNotification = @"AudioSegmentTreeDidChangeNot
 - (NSString *)description
 {
 	NSMutableString *string = [[NSMutableString alloc] init];
-	int				i, j;
+	NSInteger				i, j;
 	
+#warning 64BIT: Check formatting arguments
 	[string appendFormat:@"Root node has %d audio segment nodes:\n", [rootNode numberOfChildren]];
 	for (i = 0; i < [rootNode numberOfChildren]; i++) {
+#warning 64BIT: Check formatting arguments
 		[string appendFormat:@"%d: %@\n", i, [[rootNode childAtIndex:i] description]];
 	}
 	
-	int		silences[200];
+	NSInteger		silences[200];
 	for (i = 0; i < 200; i++) silences[i] = 0;
 	for (i = 0; i < [rootNode numberOfChildren]; i++) {
 		AudioSegmentNode	*node1 = [rootNode childAtIndex:i];
@@ -454,21 +457,21 @@ NSString *AudioSegmentTreeDidChangeNotification = @"AudioSegmentTreeDidChangeNot
 			for (j = 0; j < [node1 numberOfChildren]; j++) {
 				AudioSegmentNode	*node2 = [node1 childAtIndex:j];
 				if ([node2 nodeType] == AudioSegmentNodeTypeSilence) {
-					silences[((int)([node2 duration] * 10.0))]++;
+					silences[((NSInteger)([node2 duration] * 10.0))]++;
 				}
 			}
 		} else {
 			if ([node1 nodeType] == AudioSegmentNodeTypeSilence) {
-				silences[((int)([node1 duration] * 10.0))]++;
+				silences[((NSInteger)([node1 duration] * 10.0))]++;
 			}
 		}
 	}
-	int		count = 0;
+	NSUInteger		count = 0;
 	for (i = 0; i < 200; i++) {
-		NSLog(@"silences %.1f s - %.1f s: %d", i/10.0, (i + 1)/10.0, silences[i]);
+		NSLog(@"silences %.1f s - %.1f s: %lu", i/10.0, (i + 1)/10.0, silences[i]);
 		count += silences[i];
 	}
-	NSLog(@"total silences: %d", count);
+	NSLog(@"total silences: %lu", count);
 	
 	return [string autorelease];
 }

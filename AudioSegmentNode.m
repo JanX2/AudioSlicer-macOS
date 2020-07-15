@@ -71,7 +71,7 @@
 {
 	if (self = [super init]) {
 		if ([coder allowsKeyedCoding]) {
-			nodeType = [coder decodeIntForKey:@"nodeType"];
+			nodeType = [coder decodeIntegerForKey:@"nodeType"];
 			startTime = [coder decodeDoubleForKey:@"startTime"];
 			endTime = [coder decodeDoubleForKey:@"endTime"];
 			doesSplit = [coder decodeBoolForKey:@"doesSplit"];
@@ -87,7 +87,7 @@
 - (void)encodeWithCoder:(NSCoder *)coder
 {
     if ([coder allowsKeyedCoding]) {
-        [coder encodeInt:nodeType forKey:@"nodeType"];
+        [coder encodeInteger:nodeType forKey:@"nodeType"];
         [coder encodeDouble:startTime forKey:@"startTime"];
         [coder encodeDouble:endTime forKey:@"endTime"];
         [coder encodeBool:doesSplit forKey:@"doesSplit"];
@@ -107,8 +107,8 @@
 		case AudioSegmentNodeTypeCollection: type = @"Collection"; break;
 	}
 	
-	return [NSString stringWithFormat:@"nodeType = %@, numChildren = %d, startTime = %.2f, endTime = %.2f",
-		type, [self numberOfChildren], [self startTime], [self endTime]];
+	return [NSString stringWithFormat:@"nodeType = %@, numChildren = %lu, startTime = %.2f, endTime = %.2f",
+			type, (unsigned long)[self numberOfChildren], [self startTime], [self endTime]];
 }
 
 
@@ -151,17 +151,17 @@
 	return doesSplit;
 }
 
-- (int)numberOfChildren
+- (NSUInteger)numberOfChildren
 {
 	return [childNodes count];
 }
 
-- (AudioSegmentNode *)childAtIndex:(int)index
+- (AudioSegmentNode *)childAtIndex:(NSUInteger)index
 {
 	return (AudioSegmentNode *)[childNodes objectAtIndex:index];
 }
 
-- (int)indexOfChild:(AudioSegmentNode *)child
+- (NSUInteger)indexOfChild:(AudioSegmentNode *)child
 {
 	return [childNodes indexOfObjectIdenticalTo:child];
 }
@@ -179,7 +179,7 @@
 		
 		// check if there is some overlap here
 		BOOL overlapped = NO;
-		for (int i = 0; i < [childNodes count]; i++) {
+		for (NSInteger i = 0; i < [childNodes count]; i++) {
 			AudioSegmentNode *n = (AudioSegmentNode *)[childNodes objectAtIndex:i];
 			if ((node->nodeType == AudioSegmentNodeTypeSilence)&& (n->nodeType == AudioSegmentNodeTypeSilence) && [n overlapsWith:node]) {
 				n->startTime = MIN(n->startTime, node->startTime);
@@ -200,7 +200,7 @@
 
 - (void)mergeChildWithNeighbours:(AudioSegmentNode *)node
 {
-	unsigned int		nodeIndex = [childNodes indexOfObjectIdenticalTo:node];
+	NSUInteger		nodeIndex = [childNodes indexOfObjectIdenticalTo:node];
 	AudioSegmentNode	*prevNode = (nodeIndex > 0) ? [childNodes objectAtIndex:(nodeIndex - 1)] : nil;
 	AudioSegmentNode	*nextNode = (nodeIndex < ([childNodes count] - 1)) ? [childNodes objectAtIndex:(nodeIndex + 1)] : nil;
 	

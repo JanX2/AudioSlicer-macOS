@@ -67,10 +67,10 @@
 	}
 }
 
-- (void)drawRow:(int)rowIndex clipRect:(NSRect)clipRect
+- (void)drawRow:(NSInteger)rowIndex clipRect:(NSRect)clipRect
 {
 	if (![self isRowSelected:rowIndex]) {
-		NSColor		*bg = [[self delegate] outlineView:self backgroundColorForRow:rowIndex];
+		NSColor		*bg = [(id <NSOutlineViewDelegate>)[self delegate] outlineView:self backgroundColorForRow:rowIndex];
 		if (bg) {
 			[NSGraphicsContext saveGraphicsState];
 			[bg set];
@@ -89,7 +89,7 @@
 - (void)drawGridInClipRect:(NSRect)aRect
 {
 	NSRange		rows = [self rowsInRect:aRect];
-	int			rowIndex;
+	NSInteger			rowIndex;
 	
 	for (rowIndex = rows.location; rowIndex < rows.location + rows.length; rowIndex++) {
 		if ([self levelForRow:rowIndex + 1] <= 0) {
@@ -101,8 +101,8 @@
 
 - (void)textDidEndEditing:(NSNotification *)aNotification
 {
-	if ([[[aNotification userInfo] objectForKey:@"NSTextMovement"] intValue] == NSReturnTextMovement) {
-		NSDictionary  *userInfo = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:NSOtherTextMovement]
+	if ([[[aNotification userInfo] objectForKey:@"NSTextMovement"] integerValue] == NSReturnTextMovement) {
+		NSDictionary  *userInfo = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:NSOtherTextMovement]
 															  forKey:@"NSTextMovement"];
 		[super textDidEndEditing:[NSNotification notificationWithName:[aNotification name]
 															   object:[aNotification object]
@@ -181,7 +181,7 @@
 	[menu setAutoenablesItems:NO];
 	[menuItems sortUsingDescriptors:[NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"title"
 																						  ascending:YES] autorelease]]];
-	for (int i = 0; i < [menuItems count]; i++) {
+	for (NSUInteger	 i = 0; i < [menuItems count]; i++) {
 		[menu addItem:[menuItems objectAtIndex:i]];
 	}
 	
@@ -235,7 +235,7 @@
 	
 	while (column = [columns nextObject]) {
 		[columnIdentifiers addObject:[column identifier]];
-		[columnWidths addObject:[NSNumber numberWithFloat:[column width]]];
+		[columnWidths addObject:@([column width])];
 	}
 	
 	NSUserDefaults  *defaults = [NSUserDefaults standardUserDefaults];
@@ -260,8 +260,8 @@
 		NSEnumerator	*widths;
 		NSTableColumn   *column;
 		NSString		*identifier;
-		int				colIndex;
-		float			width;
+		NSInteger				colIndex;
+		CGFloat			width;
 		
 		isRestoringFromDefaults = YES;
 		
@@ -288,7 +288,7 @@
 		while (identifier = [identifiers nextObject]) {
 			column = [allTableColumns objectForKey:identifier];   
 			@try {
-				width = [[widths nextObject] floatValue];
+				width = [[widths nextObject] doubleValue];
 			} @catch(NSException *e) {
 				width = 0.0;
 			}

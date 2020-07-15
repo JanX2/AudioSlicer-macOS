@@ -28,7 +28,7 @@
 #import "MADDecoderProcessor.h"
 
 @interface MADDecoderThreaded : MADDecoder {
-	int							numProcessors;
+	NSUInteger					numProcessors;
 	MADDecoderSilenceAnalyzer	**processors;
 	pthread_t					*processorThreads;
 	double						*progressValues;
@@ -36,6 +36,6 @@
 	NSLock						*syncLock;
 }
 
-- (int)numProcessorCores;
+- (NSInteger)numProcessorCores;
 
 @end

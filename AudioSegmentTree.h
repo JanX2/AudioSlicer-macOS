@@ -60,12 +60,12 @@ extern NSString *AudioSegmentTreeDidChangeNotification;
 - (void)setSplitPointAtNode:(AudioSegmentNode *)node withSlice:(AudioSlice *)slice;
 - (void)clearSplitPointAtNode:(AudioSegmentNode *)node;
 
-- (int)numberOfSlices;
-- (AudioSlice *)sliceAtIndex:(int)index;
-- (int)indexOfSlice:(AudioSlice *)slice;
-- (int)numberOfAudioSegmentsInSlice:(AudioSlice *)slice;
-- (AudioSegmentNode *)audioSegmentAtIndex:(int)index inSlice:(AudioSlice *)slice;
-- (int)indexOfSliceForAudioSegment:(AudioSegmentNode *)node;
+- (NSInteger)numberOfSlices;
+- (AudioSlice *)sliceAtIndex:(NSInteger)index;
+- (NSInteger)indexOfSlice:(AudioSlice *)slice;
+- (NSInteger)numberOfAudioSegmentsInSlice:(AudioSlice *)slice;
+- (AudioSegmentNode *)audioSegmentAtIndex:(NSInteger)index inSlice:(AudioSlice *)slice;
+- (NSInteger)indexOfSliceForAudioSegment:(AudioSegmentNode *)node;
 
 - (double)shortestSilenceInTree;
 - (double)longestSilenceInTree;
