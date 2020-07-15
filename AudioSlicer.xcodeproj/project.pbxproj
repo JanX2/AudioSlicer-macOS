@@ -97,6 +97,8 @@
 			isa = PBXBuildRule;
 			compilerSpec = com.apple.compilers.gcc;
 			fileType = sourcecode.cpp;
+			inputFiles = (
+			);
 			isEditable = 1;
 			outputFiles = (
 			);
@@ -105,6 +107,8 @@
 			isa = PBXBuildRule;
 			compilerSpec = com.apple.compilers.gcc;
 			fileType = sourcecode.c;
+			inputFiles = (
+			);
 			isEditable = 1;
 			outputFiles = (
 			);
@@ -492,8 +496,17 @@
 /* Begin PBXProject section */
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = 73DE30BF0876D02F006EC03A /* Build configuration list for PBXProject "AudioSlicer" */;
+			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = en;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+				Base,
+				English,
+			);
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* AudioSlicer */;
 			projectDirPath = "";
 			projectReferences = (
@@ -502,6 +515,7 @@
 					ProjectRef = 73AEE97F0ACEDAAE00C21CD6 /* IntervalSlider.xcodeproj */;
 				},
 			);
+			projectRoot = "";
 			targets = (
 				8D15AC270486D014006FF6A4 /* AudioSlicer */,
 				7315F9180ACEA97800696133 /* libmad */,
@@ -834,21 +848,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = "";
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Development;
 		};
 		73DE30C10876D02F006EC03A /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
 				GCC_VERSION_ppc = 3.3;
 				MACOSX_DEPLOYMENT_TARGET = "";
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.3;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				SDKROOT_ppc = /Developer/SDKs/MacOSX10.3.9.sdk;
 			};
 			name = Deployment;

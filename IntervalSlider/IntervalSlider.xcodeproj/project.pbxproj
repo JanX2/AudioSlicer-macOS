@@ -190,10 +190,20 @@
 /* Begin PBXProject section */
 		0259C573FE90428111CA0C5A /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = 73AEE90D0ACEDA5400C21CD6 /* Build configuration list for PBXProject "IntervalSlider" */;
+			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = en;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+				Base,
+				English,
+			);
 			mainGroup = 0259C574FE90428111CA0C5A /* IntervalSlider */;
 			projectDirPath = "";
+			projectRoot = "";
 			targets = (
 				8D1AC9600486D14A00FE50C9 /* IntervalSlider */,
 			);
@@ -345,20 +355,14 @@
 		73AEE90E0ACEDA5400C21CD6 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Development;
 		};
 		73AEE90F0ACEDA5400C21CD6 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
 				GCC_VERSION_ppc = 3.3;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.3;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				SDKROOT_ppc = /Developer/SDKs/MacOSX10.3.9.sdk;
 			};
 			name = Deployment;
