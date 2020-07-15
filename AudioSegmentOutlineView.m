@@ -255,7 +255,6 @@
 	
 	if ([defaults objectForKey:[NSString stringWithFormat:@"%@-Identifiers", [self autosaveName]]] &&
 		[defaults objectForKey:[NSString stringWithFormat:@"%@-Widths", [self autosaveName]]]) {
-		NSEnumerator	*columns;
 		NSEnumerator	*identifiers;
 		NSEnumerator	*widths;
 		NSTableColumn   *column;
@@ -266,12 +265,19 @@
 		isRestoringFromDefaults = YES;
 		
 		// remove all titled columns
-		columns = [[self tableColumns] objectEnumerator];
-		while (column = [columns nextObject]) {
+		NSUInteger columnIndex = 0;
+		NSMutableIndexSet *columnIndexesToRemove = [NSMutableIndexSet indexSet];
+		for (NSTableColumn *column in self.tableColumns) {
 			if (column != [self outlineTableColumn] && ![[[column headerCell] title] isEqualToString:@""]) {
-				[self removeTableColumn:column];
+				[columnIndexesToRemove addIndex:columnIndex];
 			}
+			
+			columnIndex += 1;
 		}
+		
+		[columnIndexesToRemove enumerateIndexesWithOptions:NSEnumerationReverse usingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
+			[self removeTableColumn:self.tableColumns[idx]];
+		}];
 		
 		// re-add all columns in prefs
 		identifiers = [[defaults objectForKey:[NSString stringWithFormat:@"%@-Identifiers", [self autosaveName]]] objectEnumerator];
