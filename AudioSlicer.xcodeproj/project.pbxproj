@@ -6,36 +6,12 @@
 	objectVersion = 42;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		7315F9180ACEA97800696133 /* libmad */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 7315F9260ACEA98600696133 /* Build configuration list for PBXAggregateTarget "libmad" */;
-			buildPhases = (
-				7315F9170ACEA97800696133 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = libmad;
-			productName = libmad;
-		};
-		73E217BD0B17A65000335369 /* taglib */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 73E217BF0B17A65000335369 /* Build configuration list for PBXAggregateTarget "taglib" */;
-			buildPhases = (
-				73E217BE0B17A65000335369 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = taglib;
-			productName = libid3;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
+		3DD87BD924BF32800038DCE6 /* taglib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DD87BD724BF32800038DCE6 /* taglib.framework */; };
+		3DD87BDA24BF32800038DCE6 /* mad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DD87BD824BF32800038DCE6 /* mad.framework */; };
 		73032C6305DF825500899B94 /* AudioSegmentTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 73032C6105DF825500899B94 /* AudioSegmentTree.m */; };
 		73032C6905DF828C00899B94 /* AudioSegmentNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 73032C6705DF828C00899B94 /* AudioSegmentNode.m */; };
 		730EA7240B0F495F00102AEA /* AudioSlicer_User_Guide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 730EA7180B0F492500102AEA /* AudioSlicer_User_Guide.pdf */; };
-		7315FA600ACEC70200696133 /* libmad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7315FA5F0ACEC70200696133 /* libmad.a */; };
 		7332910C05DA975500BFB594 /* PCMAudioBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7332910A05DA975500BFB594 /* PCMAudioBuffer.m */; };
 		73363FF805FBA92300E5C811 /* SegmentTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73363FF605FBA92300E5C811 /* SegmentTitleCell.m */; };
 		7337E91805F3D48B005D3A66 /* AudioFileMP3Tag.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7337E91005F3CEBD005D3A66 /* AudioFileMP3Tag.mm */; };
@@ -78,7 +54,6 @@
 		73D7CBBE05F49EE700094FB5 /* Preferences.nib in Resources */ = {isa = PBXBuildFile; fileRef = 73D7CBBC05F49EE700094FB5 /* Preferences.nib */; };
 		73D7CBC405F49F8500094FB5 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D7CBC205F49F8500094FB5 /* PreferencesController.m */; };
 		73D7CBDC05F4C6D900094FB5 /* ClippingNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D7CBDA05F4C6D900094FB5 /* ClippingNumberFormatter.m */; };
-		73E219FD0B17B2B700335369 /* libtag.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73E219FC0B17B2B700335369 /* libtag.a */; };
 		73F0AEBA05D64DE000D93D85 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73F0AEB805D64DE000D93D85 /* AppController.m */; };
 		73F6B5800636C31800F07FED /* Application.icns in Resources */ = {isa = PBXBuildFile; fileRef = 73F6B57D0636C31700F07FED /* Application.icns */; };
 		73F6B5810636C31800F07FED /* MP3Document.icns in Resources */ = {isa = PBXBuildFile; fileRef = 73F6B57E0636C31700F07FED /* MP3Document.icns */; };
@@ -116,13 +91,6 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
-		7315FA170ACEC21E00696133 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7315F9180ACEA97800696133;
-			remoteInfo = libmad;
-		};
 		73AEE9830ACEDAAE00C21CD6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 73AEE97F0ACEDAAE00C21CD6 /* IntervalSlider.xcodeproj */;
@@ -137,13 +105,6 @@
 			remoteGlobalIDString = 8D1AC9600486D14A00FE50C9;
 			remoteInfo = IntervalSlider;
 		};
-		73E219DC0B17B16A00335369 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 73E217BD0B17A65000335369;
-			remoteInfo = taglib;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -156,13 +117,14 @@
 		2A37F4B7FDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		2A37F4BAFDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		32DBCF750370BD2300C91783 /* AudioSlicer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioSlicer_Prefix.pch; sourceTree = "<group>"; };
+		3DD87BD724BF32800038DCE6 /* taglib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = taglib.framework; path = Frameworks/taglib.framework; sourceTree = "<group>"; };
+		3DD87BD824BF32800038DCE6 /* mad.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mad.framework; path = Frameworks/mad.framework; sourceTree = "<group>"; };
 		73032C6005DF825500899B94 /* AudioSegmentTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioSegmentTree.h; sourceTree = "<group>"; };
 		73032C6105DF825500899B94 /* AudioSegmentTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioSegmentTree.m; sourceTree = "<group>"; };
 		73032C6605DF828C00899B94 /* AudioSegmentNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioSegmentNode.h; sourceTree = "<group>"; };
 		73032C6705DF828C00899B94 /* AudioSegmentNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioSegmentNode.m; sourceTree = "<group>"; };
 		730EA7180B0F492500102AEA /* AudioSlicer_User_Guide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AudioSlicer_User_Guide.pdf; sourceTree = "<group>"; };
 		7315F7470ACEA91A00696133 /* libbuilder.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; name = libbuilder.sh; path = Frameworks/libbuilder.sh; sourceTree = "<group>"; };
-		7315FA5F0ACEC70200696133 /* libmad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmad.a; path = libmad/lib/libmad.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7332910905DA975500BFB594 /* PCMAudioBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCMAudioBuffer.h; sourceTree = "<group>"; };
 		7332910A05DA975500BFB594 /* PCMAudioBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCMAudioBuffer.m; sourceTree = "<group>"; };
 		73363FF505FBA92300E5C811 /* SegmentTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentTitleCell.h; sourceTree = "<group>"; };
@@ -228,7 +190,6 @@
 		73D7CBC205F49F8500094FB5 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		73D7CBD905F4C6D900094FB5 /* ClippingNumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClippingNumberFormatter.h; sourceTree = "<group>"; };
 		73D7CBDA05F4C6D900094FB5 /* ClippingNumberFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClippingNumberFormatter.m; sourceTree = "<group>"; };
-		73E219FC0B17B2B700335369 /* libtag.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtag.a; path = taglib/lib/libtag.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		73E21B260B18A8B800335369 /* Changelog.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = Changelog.txt; sourceTree = "<group>"; };
 		73F0AEB705D64DE000D93D85 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		73F0AEB805D64DE000D93D85 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
@@ -247,8 +208,8 @@
 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
 				738E370F05DCE62D00E50ED7 /* CoreAudio.framework in Frameworks */,
 				738E371C05DCE63D00E50ED7 /* AudioUnit.framework in Frameworks */,
-				7315FA600ACEC70200696133 /* libmad.a in Frameworks */,
-				73E219FD0B17B2B700335369 /* libtag.a in Frameworks */,
+				3DD87BDA24BF32800038DCE6 /* mad.framework in Frameworks */,
+				3DD87BD924BF32800038DCE6 /* taglib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,8 +289,8 @@
 			isa = PBXGroup;
 			children = (
 				73AEE97F0ACEDAAE00C21CD6 /* IntervalSlider.xcodeproj */,
-				7315FA5F0ACEC70200696133 /* libmad.a */,
-				73E219FC0B17B2B700335369 /* libtag.a */,
+				3DD87BD824BF32800038DCE6 /* mad.framework */,
+				3DD87BD724BF32800038DCE6 /* taglib.framework */,
 				738E371B05DCE63D00E50ED7 /* AudioUnit.framework */,
 				738E370E05DCE62D00E50ED7 /* CoreAudio.framework */,
 				1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */,
@@ -481,8 +442,6 @@
 				7337E90905F3CC97005D3A66 /* PBXBuildRule */,
 			);
 			dependencies = (
-				7315FA180ACEC21E00696133 /* PBXTargetDependency */,
-				73E219DD0B17B16A00335369 /* PBXTargetDependency */,
 				73AEE9860ACEDABA00C21CD6 /* PBXTargetDependency */,
 			);
 			name = AudioSlicer;
@@ -518,8 +477,6 @@
 			projectRoot = "";
 			targets = (
 				8D15AC270486D014006FF6A4 /* AudioSlicer */,
-				7315F9180ACEA97800696133 /* libmad */,
-				73E217BD0B17A65000335369 /* taglib */,
 			);
 		};
 /* End PBXProject section */
@@ -569,39 +526,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		7315F9170ACEA97800696133 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$SRCROOT/Frameworks/libmad-0.15.1b.tar.gz",
-			);
-			outputPaths = (
-				$BUILT_PRODUCTS_DIR/libmad/lib/libmad.a,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "BASENAME=\"libmad\"\nRELSRCDIR=\"Frameworks/libmad-0.15.1b.tar.gz\"\nCONFIGURE_ARGUMENTS=\"\"\nNO_CFLAGS_SYSROOT=1\nNO_CONFIGURE_HOST_ARGUMENT=0\n\nsource \"$SRCROOT/Frameworks/libbuilder.sh\"\nbuild .libs/libmad.a\n\ninstallFile \"mad.h\" \"$BASENAME/include\"\ninstallFile \".libs/libmad.a\" \"$BASENAME/lib\"\n";
-		};
-		73E217BE0B17A65000335369 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$SRCROOT/Frameworks/taglib-1.4.tar.gz",
-			);
-			outputPaths = (
-				$BUILT_PRODUCTS_DIR/taglib/lib/libtag.a,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "BASENAME=\"taglib\"\nRELSRCDIR=\"Frameworks/taglib-1.4.tar.gz\"\nCONFIGURE_ARGUMENTS=\"--disable-shared --enable-static\"\nNO_CFLAGS_SYSROOT=1\nNO_CONFIGURE_HOST_ARGUMENT=0\n\nsource \"$SRCROOT/Frameworks/libbuilder.sh\"\nbuild taglib/.libs/libtag.a install\n\n#installFile \"include/id3.h\" \"$BASENAME/include\"\n#mkdir -p \"$BUILT_PRODUCTS_DIR/$BASENAME/include/taglib\"\n#cp \"$BUILDDIR/include/taglib/\"*.h \"$BUILT_PRODUCTS_DIR/$BASENAME/include/taglib\"\ninstallFile \"taglib/.libs/libtag.a\" \"$BASENAME/lib\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		8D15AC300486D014006FF6A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -641,20 +565,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7315FA180ACEC21E00696133 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7315F9180ACEA97800696133 /* libmad */;
-			targetProxy = 7315FA170ACEC21E00696133 /* PBXContainerItemProxy */;
-		};
 		73AEE9860ACEDABA00C21CD6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = IntervalSlider;
 			targetProxy = 73AEE9850ACEDABA00C21CD6 /* PBXContainerItemProxy */;
-		};
-		73E219DD0B17B16A00335369 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 73E217BD0B17A65000335369 /* taglib */;
-			targetProxy = 73E219DC0B17B16A00335369 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -718,34 +632,12 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		7315F9270ACEA98600696133 /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				PRODUCT_NAME = libmad;
-			};
-			name = Development;
-		};
-		7315F9280ACEA98600696133 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				PRODUCT_NAME = libmad;
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
 		73DE30BC0876D02F006EC03A /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -758,22 +650,8 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)/taglib/include/taglib",
-					"$(BUILT_PRODUCTS_DIR)/libmad/include",
-				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)/taglib/lib",
-					"$(BUILT_PRODUCTS_DIR)/libmad/lib",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_2)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_3)",
-				);
-				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/build/Deployment/taglib/lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/build/Deployment/libmad/lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)/build/Development/taglib/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
@@ -798,7 +676,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -809,22 +687,8 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)/taglib/include/taglib",
-					"$(BUILT_PRODUCTS_DIR)/libmad/include",
-				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)/taglib/lib",
-					"$(BUILT_PRODUCTS_DIR)/libmad/lib",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_2)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_3)",
-				);
-				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/build/Deployment/taglib/lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/build/Deployment/libmad/lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)/build/Development/taglib/lib\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -861,40 +725,9 @@
 			};
 			name = Deployment;
 		};
-		73E217C00B17A65000335369 /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				PRODUCT_NAME = libid3;
-			};
-			name = Development;
-		};
-		73E217C10B17A65000335369 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				PRODUCT_NAME = libid3;
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7315F9260ACEA98600696133 /* Build configuration list for PBXAggregateTarget "libmad" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7315F9270ACEA98600696133 /* Development */,
-				7315F9280ACEA98600696133 /* Deployment */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Development;
-		};
 		73DE30BB0876D02F006EC03A /* Build configuration list for PBXNativeTarget "AudioSlicer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -909,15 +742,6 @@
 			buildConfigurations = (
 				73DE30C00876D02F006EC03A /* Development */,
 				73DE30C10876D02F006EC03A /* Deployment */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Development;
-		};
-		73E217BF0B17A65000335369 /* Build configuration list for PBXAggregateTarget "taglib" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				73E217C00B17A65000335369 /* Development */,
-				73E217C10B17A65000335369 /* Deployment */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;

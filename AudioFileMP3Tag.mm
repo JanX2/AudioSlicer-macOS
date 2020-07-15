@@ -23,15 +23,15 @@
 
 #import "AudioFileMP3.h"
 
-#include <tag.h>
-#include <mpegfile.h>
-#include <id3v2tag.h>
-#include <id3v2frame.h>
-#include <id3v2header.h>
-#include <id3v1tag.h>
-#include <id3v1genres.h>
-#include <textidentificationframe.h>
-#include <commentsframe.h>
+#include <tagLib/tag.h>
+#include <tagLib/mpegfile.h>
+#include <tagLib/id3v2tag.h>
+#include <tagLib/id3v2frame.h>
+#include <tagLib/id3v2header.h>
+#include <tagLib/id3v1tag.h>
+#include <tagLib/id3v1genres.h>
+#include <tagLib/textidentificationframe.h>
+#include <tagLib/commentsframe.h>
 
 @implementation AudioFileMP3 (AudioFileTag)
 

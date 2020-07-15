@@ -23,7 +23,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-#include "mad.h"
+#include <mad/mad.h>
 
 @class MADDecoder;
 
