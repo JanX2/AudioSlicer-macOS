@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3DD87BD924BF32800038DCE6 /* taglib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DD87BD724BF32800038DCE6 /* taglib.framework */; };
 		3DD87BDA24BF32800038DCE6 /* mad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DD87BD824BF32800038DCE6 /* mad.framework */; };
+		3DD87BDC24BF3B160038DCE6 /* mad.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 3DD87BD824BF32800038DCE6 /* mad.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3DD87BDD24BF3B160038DCE6 /* taglib.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 3DD87BD724BF32800038DCE6 /* taglib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		73032C6305DF825500899B94 /* AudioSegmentTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 73032C6105DF825500899B94 /* AudioSegmentTree.m */; };
 		73032C6905DF828C00899B94 /* AudioSegmentNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 73032C6705DF828C00899B94 /* AudioSegmentNode.m */; };
 		730EA7240B0F495F00102AEA /* AudioSlicer_User_Guide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 730EA7180B0F492500102AEA /* AudioSlicer_User_Guide.pdf */; };
@@ -106,6 +108,21 @@
 			remoteInfo = IntervalSlider;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3DD87BDB24BF3B0A0038DCE6 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3DD87BDC24BF3B160038DCE6 /* mad.framework in Copy Frameworks */,
+				3DD87BDD24BF3B160038DCE6 /* taglib.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -436,6 +453,7 @@
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
+				3DD87BDB24BF3B0A0038DCE6 /* Copy Frameworks */,
 			);
 			buildRules = (
 				73DE30FD0876D4BA006EC03A /* PBXBuildRule */,
@@ -652,6 +670,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)) @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
@@ -689,6 +708,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)) @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
