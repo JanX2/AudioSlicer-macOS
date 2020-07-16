@@ -484,7 +484,7 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 {
 	NSEnumerator	*slices = [[self sliceSelection] objectEnumerator];
 	AudioSlice		*slice;
-	NSInteger				startTrack = [[[self sliceSelection] objectAtIndex:0] trackNumber];
+	NSUInteger		startTrack = [[[self sliceSelection] objectAtIndex:0] trackNumber];
 	while (slice = [slices nextObject]) {
 		[slice setTrackNumber:startTrack++];
 	}
@@ -832,8 +832,8 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 - (NSString *)filenameUsingFormat:(NSString *)format forSlice:(AudioSlice *)slice
 {
 	NSMutableString		*name = [[format mutableCopy] autorelease];
-	NSUInteger			trackNumberDigits = [(NSString *)[NSString stringWithFormat:@"%d", [slice trackCount]] length];
-	NSUInteger			cdNumberDigits = [(NSString *)[NSString stringWithFormat:@"%d", [slice cdCount]] length];
+	NSUInteger			trackNumberDigits = [(NSString *)[NSString stringWithFormat:@"%lu", (unsigned long)[slice trackCount]] length];
+	NSUInteger			cdNumberDigits = [(NSString *)[NSString stringWithFormat:@"%lu", (unsigned long)[slice cdCount]] length];
 	NSString			*key;
 	NSEnumerator		*keys = [[NSArray arrayWithObjects:@"title", @"artist", @"album", @"composer", @"genre", @"year",
 														   @"trackNumber", @"trackCount", @"cdNumber", @"cdCount",

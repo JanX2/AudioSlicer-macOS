@@ -83,7 +83,7 @@ static enum mad_flow mad_error_callback(void *data, struct mad_stream *stream, s
 	[super dealloc];
 }
 
-- (uint32_t)currentBufferPosition
+- (NSUInteger)currentBufferPosition
 {
 	return currentBufferPosition;
 }
@@ -348,7 +348,7 @@ static enum mad_flow mad_error_callback(void *data, struct mad_stream *stream, s
 
 @implementation MADDecoderSilenceAnalyzer
 
-- (id)initWithDecoder:(MADDecoder *)aDecoder startByteOffset:(uint32_t)start endByteOffset:(uint32_t)end
+- (id)initWithDecoder:(MADDecoder *)aDecoder startByteOffset:(NSUInteger)start endByteOffset:(NSUInteger)end
 {
 	if (self = [super initWithDecoder:aDecoder startTime:0.0 endTime:0.0]) {
 		useDecodeStartStopByteOffsets = YES;
@@ -385,7 +385,7 @@ static enum mad_flow mad_error_callback(void *data, struct mad_stream *stream, s
 	silenceDurationThreshold = threshold;
 }
 
-- (uint32_t)decodeStartByteOffset
+- (NSUInteger)decodeStartByteOffset
 {
 	return decodeStartByteOffset;
 }

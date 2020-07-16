@@ -37,7 +37,7 @@
 	mad_timer_t				decodeStopTime;
 	
 	// variables keeping the inner state of the decoding processing
-	uint32_t				currentBufferPosition;
+	NSUInteger				currentBufferPosition;
 	mad_timer_t				currentTime;
 	mad_timer_t				nextCurrentTime;
 	
@@ -54,7 +54,7 @@
 - (void)reset;
 - (void)dealloc;
 
-- (uint32_t)currentBufferPosition;
+- (NSUInteger)currentBufferPosition;
 - (double)currentTime;
 
 - (int)runDecoder;
@@ -81,8 +81,8 @@
 @interface MADDecoderSilenceAnalyzer : MADDecoderProcessor {
 	// alternatively decoding start/end points can be specified as byte offsets
 	BOOL			useDecodeStartStopByteOffsets;
-	uint32_t		decodeStartByteOffset;
-	uint32_t		decodeStopByteOffset;
+	NSUInteger		decodeStartByteOffset;
+	NSUInteger		decodeStopByteOffset;
 	
 	double			silenceDurationThreshold;   // min secs a silence has to last to be recorded
 	int				silenceVolumeThreshold;		// max volume level in pcm scale
@@ -92,9 +92,9 @@
 	
 	long			seekIndexLastSecond;
 }
-- (id)initWithDecoder:(MADDecoder *)aDecoder startByteOffset:(uint32_t)start endByteOffset:(uint32_t)end;
+- (id)initWithDecoder:(MADDecoder *)aDecoder startByteOffset:(NSUInteger)start endByteOffset:(NSUInteger)end;
 - (void)setSilenceVolumeThreshold:(int)threshold;
 - (void)setSilenceDurationThreshold:(double)threshold;
-- (uint32_t)decodeStartByteOffset;
+- (NSUInteger)decodeStartByteOffset;
 @end
 

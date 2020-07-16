@@ -43,10 +43,10 @@ extern NSString *AudioSliceDidChangeNotification;
 	NSString			*genre;
 	NSString			*comment;
 	int					year;
-	int					trackNumber;
-	int					trackCount;
-	int					cdNumber;
-	int					cdCount;
+	NSUInteger			trackNumber;
+	NSUInteger			trackCount;
+	NSUInteger			cdNumber;
+	NSUInteger			cdCount;
 }
 
 + (id)audioSliceWithTree:(AudioSegmentTree *)tree leftSilenceSegment:(AudioSegmentNode *)left rightSilenceSegment:(AudioSegmentNode *)right;
@@ -86,14 +86,14 @@ extern NSString *AudioSliceDidChangeNotification;
 - (NSString *)comment;
 - (void)setYear:(int)aYear;
 - (int)year;
-- (void)setTrackNumber:(int)track;
-- (int)trackNumber;
-- (void)setTrackCount:(int)count;
-- (int)trackCount;
-- (void)setCdNumber:(int)cd;
-- (int)cdNumber;
-- (void)setCdCount:(int)count;
-- (int)cdCount;
+- (void)setTrackNumber:(NSUInteger)track;
+- (NSUInteger)trackNumber;
+- (void)setTrackCount:(NSUInteger)count;
+- (NSUInteger)trackCount;
+- (void)setCdNumber:(NSUInteger)cd;
+- (NSUInteger)cdNumber;
+- (void)setCdCount:(NSUInteger)count;
+- (NSUInteger)cdCount;
 
 - (void)setExpandedInOutlineView:(BOOL)flag;
 - (BOOL)expandedInOutlineView;

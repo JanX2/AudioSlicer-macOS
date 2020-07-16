@@ -123,11 +123,11 @@ static OSStatus coreAudioRenderProc(void *inRefCon, AudioUnitRenderActionFlags *
 				
 				// read out the old format and convert to the new one
 				seekIndex = [[SeekIndex alloc] initWithCapacity:seekIndexSize];
-				for (uint32_t i = 0; i < seekIndexSize; i++) {
+				for (NSUInteger i = 0; i < seekIndexSize; i++) {
 					mad_timer_t time;
-					time.seconds = CFSwapInt32BigToHost(ptr[i].time.seconds);
-					time.fraction = CFSwapInt32BigToHost(ptr[i].time.fraction);
-					uint32_t byteOffset = CFSwapInt32BigToHost(ptr[i].byteOffset);
+					time.seconds = CFSwapInt32BigToHost((uint32_t)ptr[i].time.seconds);
+					time.fraction = CFSwapInt32BigToHost((uint32_t)ptr[i].time.fraction);
+					NSUInteger byteOffset = CFSwapInt32BigToHost((uint32_t)ptr[i].byteOffset);
 					[seekIndex addOffset:byteOffset
 							forTimeIndex:[MADDecoderProcessor timerToSeconds:time]];
 				}

@@ -25,27 +25,27 @@
 
 typedef struct {
 	double			time;
-	uint32_t		byteOffset;
+	NSUInteger		byteOffset;
 } SeekIndexEntry;
 
 @interface SeekIndex : NSObject {
-	uint32_t		numEntries;
-	uint32_t		allocedEntries;
+	NSUInteger		numEntries;
+	NSUInteger		allocedEntries;
 	SeekIndexEntry	*entries;
 	
 	NSLock			*syncLock;
 }
 
-- (id)initWithCapacity:(uint32_t)capacity;
+- (id)initWithCapacity:(NSUInteger)capacity;
 - (id)init;
 - (void)dealloc;
 
 - (id)initWithCoder:(NSCoder *)coder;
 - (void)encodeWithCoder:(NSCoder *)coder;
 
-- (void)addOffset:(uint32_t)offset forTimeIndex:(double)time;
+- (void)addOffset:(NSUInteger)offset forTimeIndex:(double)time;
 
 - (SeekIndexEntry)entryForTimeIndex:(double)time;
-- (uint32_t)offsetForTimeIndex:(double)time;
+- (NSUInteger)offsetForTimeIndex:(double)time;
 
 @end

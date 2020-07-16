@@ -130,10 +130,10 @@ NSString *AudioSliceDidChangeNotification = @"AudioSliceDidChangeNotification";
         [coder encodeObject:genre forKey:@"genre"];
         [coder encodeObject:comment forKey:@"comment"];
         [coder encodeInt:year forKey:@"year"];
-        [coder encodeInt:trackNumber forKey:@"trackNumber"];
-        [coder encodeInt:trackCount forKey:@"trackCount"];
-        [coder encodeInt:cdNumber forKey:@"cdNumber"];
-        [coder encodeInt:cdCount forKey:@"cdCount"];
+        [coder encodeInteger:trackNumber forKey:@"trackNumber"];
+        [coder encodeInteger:trackCount forKey:@"trackCount"];
+        [coder encodeInteger:cdNumber forKey:@"cdNumber"];
+        [coder encodeInteger:cdCount forKey:@"cdCount"];
 	} else {
         [NSException raise:NSInvalidArchiveOperationException format:@"Only supports NSKeyedArchiver coders"];
 	}
@@ -155,12 +155,12 @@ NSString *AudioSliceDidChangeNotification = @"AudioSliceDidChangeNotification";
 
 - (void)breakDownToAverageDuration:(double)averageDuration tolerance:(double)tolerance
 {
-	int numAudioSegments = [audioSegmentTree numberOfAudioSegmentsInSlice:self];
+	NSInteger numAudioSegments = [audioSegmentTree numberOfAudioSegmentsInSlice:self];
 	
 	double duration = 0.0;
-	int bestSplitSegmentIndex = -1;
+	NSInteger bestSplitSegmentIndex = -1;
 	double bestSplitPointSilenceDuration;
-	for (int i = 0; i < numAudioSegments; i++) {
+	for (NSInteger i = 0; i < numAudioSegments; i++) {
 		AudioSegmentNode *segment = [audioSegmentTree audioSegmentAtIndex:i inSlice:self];
 		double segmentDuration = [segment duration];
 		duration += segmentDuration;
@@ -280,16 +280,16 @@ NSString *AudioSliceDidChangeNotification = @"AudioSliceDidChangeNotification";
 		[tagDict setObject:[NSNumber numberWithInt:year] forKey:@"Year"];
 	}
 	if ([self trackNumber] > 0) {
-		[tagDict setObject:[NSNumber numberWithInt:[self trackNumber]] forKey:@"TrackNumber"];
+		[tagDict setObject:@([self trackNumber]) forKey:@"TrackNumber"];
 	}
 	if ([self trackCount] > 0) {
-		[tagDict setObject:[NSNumber numberWithInt:[self trackCount]] forKey:@"TrackCount"];
+		[tagDict setObject:@([self trackCount]) forKey:@"TrackCount"];
 	}
 	if (cdNumber > 0) {
-		[tagDict setObject:[NSNumber numberWithInt:cdNumber] forKey:@"CdNumber"];
+		[tagDict setObject:@(cdNumber) forKey:@"CdNumber"];
 	}
 	if (cdCount > 0) {
-		[tagDict setObject:[NSNumber numberWithInt:cdCount] forKey:@"CdCount"];
+		[tagDict setObject:@(cdCount) forKey:@"CdCount"];
 	}
 	
 	return tagDict;
@@ -419,7 +419,7 @@ NSString *AudioSliceDidChangeNotification = @"AudioSliceDidChangeNotification";
 	return year;
 }
 
-- (void)setTrackNumber:(int)track
+- (void)setTrackNumber:(NSUInteger)track
 {
 	if (trackNumber != track) {
 		[[[self undoManager] prepareWithInvocationTarget:self] setTrackNumber:trackNumber];
@@ -434,7 +434,7 @@ NSString *AudioSliceDidChangeNotification = @"AudioSliceDidChangeNotification";
 	}
 }
 
-- (int)trackNumber
+- (NSUInteger)trackNumber
 {
 	if (trackNumber > 0) {
 		return trackNumber;
@@ -443,7 +443,7 @@ NSString *AudioSliceDidChangeNotification = @"AudioSliceDidChangeNotification";
 	}
 }
 
-- (void)setTrackCount:(int)count
+- (void)setTrackCount:(NSUInteger)count
 {
 	if (trackCount != count) {
 		[[[self undoManager] prepareWithInvocationTarget:self] setTrackCount:trackCount];
@@ -454,7 +454,7 @@ NSString *AudioSliceDidChangeNotification = @"AudioSliceDidChangeNotification";
 	}
 }
 
-- (int)trackCount
+- (NSUInteger)trackCount
 {
 	if (trackCount > 0) {
 		return trackCount;
@@ -463,7 +463,7 @@ NSString *AudioSliceDidChangeNotification = @"AudioSliceDidChangeNotification";
 	}
 }
 
-- (void)setCdNumber:(int)cd
+- (void)setCdNumber:(NSUInteger)cd
 {
 	if (cdNumber != cd) {
 		[[[self undoManager] prepareWithInvocationTarget:self] setCdNumber:cdNumber];
@@ -474,12 +474,12 @@ NSString *AudioSliceDidChangeNotification = @"AudioSliceDidChangeNotification";
 	}
 }
 
-- (int)cdNumber
+- (NSUInteger)cdNumber
 {
 	return cdNumber;
 }
 
-- (void)setCdCount:(int)count
+- (void)setCdCount:(NSUInteger)count
 {
 	if (cdCount != count) {
 		[[[self undoManager] prepareWithInvocationTarget:self] setCdCount:cdCount];
@@ -490,7 +490,7 @@ NSString *AudioSliceDidChangeNotification = @"AudioSliceDidChangeNotification";
 	}
 }
 
-- (int)cdCount
+- (NSUInteger)cdCount
 {
 	return cdCount;
 }

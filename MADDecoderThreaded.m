@@ -78,8 +78,8 @@ static void *runProcessorThreaded(void *processor);
 	
 	// split up the work among the processors
 	for (NSUInteger i = 0; i < numProcessors; i++) {
-		uint32_t start = (([mp3Data length] / numProcessors) * i);
-		uint32_t end = start + ([mp3Data length] / numProcessors);
+		NSUInteger start = (([mp3Data length] / numProcessors) * i);
+		NSUInteger end = start + ([mp3Data length] / numProcessors);
 		processors[i] = [[MADDecoderSilenceAnalyzer alloc] initWithDecoder:self startByteOffset:start endByteOffset:end];
 		[processors[i] setSilenceVolumeThreshold:volumeThreshold];
 		[processors[i] setSilenceDurationThreshold:durationThreshold];

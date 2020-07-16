@@ -26,7 +26,7 @@
 
 @implementation SeekIndex
 
-- (id)initWithCapacity:(uint32_t)capacity
+- (id)initWithCapacity:(NSUInteger)capacity
 {
 	if (self = [super init]) {
 		allocedEntries = capacity;
@@ -64,9 +64,9 @@
 {
 	if ([coder allowsKeyedCoding]) {
 		NSArray *entriesArr = [coder decodeObjectForKey:@"entries"];
-		uint32_t count = [entriesArr count];
+		NSUInteger count = [entriesArr count];
 		if (self = [self initWithCapacity:count]) {
-			for (uint32_t i = 0; i < count; i++) {
+			for (NSUInteger i = 0; i < count; i++) {
 				NSDictionary *entryDict = [entriesArr objectAtIndex:i];
 				entries[i].time = [[entryDict objectForKey:@"time"] unsignedLongValue];
 				entries[i].byteOffset = [[entryDict objectForKey:@"offset"] doubleValue];
@@ -85,7 +85,7 @@
 {
     if ([coder allowsKeyedCoding]) {
         NSMutableArray *entriesArr = [NSMutableArray arrayWithCapacity:numEntries];
-		for (uint32_t i = 0; i < numEntries; i++) {
+		for (NSUInteger i = 0; i < numEntries; i++) {
 			NSDictionary *entryDict = [NSDictionary dictionaryWithObjectsAndKeys:
 				[NSNumber numberWithUnsignedLong:entries[i].byteOffset], @"offset",
 				[NSNumber numberWithDouble:entries[i].time], @"time",
@@ -102,7 +102,7 @@
 #pragma mark -
 
 
-- (void)addOffset:(uint32_t)offset forTimeIndex:(double)time
+- (void)addOffset:(NSUInteger)offset forTimeIndex:(double)time
 {
 	[syncLock lock];
 	
@@ -113,7 +113,7 @@
 	}
 	
 	// check for duplicates
-	for (uint32_t i = 0; i < numEntries; i++) {
+	for (NSUInteger i = 0; i < numEntries; i++) {
 		if (entries[i].time == time) {
 			// already inserted
 			[syncLock unlock];
@@ -137,9 +137,9 @@
 	
 	// find closest time index that is BEFORE the given time
 	double diff = (double)LONG_MAX;
-	uint32_t bestEntryIndex = 0;
+	NSUInteger bestEntryIndex = 0;
 	BOOL found = NO;
-	for (uint32_t i = 0; i < numEntries; i++) {
+	for (NSUInteger i = 0; i < numEntries; i++) {
 		if (entries[i].time <= time) {
 			double d = time - entries[i].time;
 			if (d < diff) {
@@ -162,7 +162,7 @@
 	return result;
 }
 
-- (uint32_t)offsetForTimeIndex:(double)time
+- (NSUInteger)offsetForTimeIndex:(double)time
 {
 	return [self entryForTimeIndex:time].byteOffset;
 }
