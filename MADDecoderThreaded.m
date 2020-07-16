@@ -68,7 +68,7 @@ static void *runProcessorThreaded(void *processor);
 #pragma mark -
 
 
-- (NSUInteger)analyzeSilencesWithVolumeThreshold:(NSInteger)volumeThreshold durationThreshold:(double)durationThreshold
+- (int)analyzeSilencesWithVolumeThreshold:(int)volumeThreshold durationThreshold:(double)durationThreshold
 {
 	// set up the processors
 	numProcessors = [self numProcessorCores];
@@ -95,7 +95,7 @@ static void *runProcessorThreaded(void *processor);
 	}
 	
 	// wait for all processors to finish
-	NSInteger result = 0;
+	int result = 0;
 	for (NSUInteger i = 0; i < numProcessors; i++) {
 		void *exitCode;
 		int err = pthread_join(processorThreads[i], &exitCode);
@@ -104,8 +104,8 @@ static void *runProcessorThreaded(void *processor);
 		}
 		
 		if (result == 0) {
-			if (exitCode != 0) {
-				result = (NSInteger)exitCode;
+			if (exitCode != NULL) {
+				result = (int)exitCode;
 			}
 		}
 	}

@@ -24,6 +24,8 @@
 #import "AudioSegmentOutlineView.h"
 #import "AudioSegmentNode.h"
 
+#import "OutlineViewController.h"
+
 @interface AudioSegmentOutlineView (Private)
 - (void)columnMenuItemClicked:(id)sender;
 - (void)tableColumnsDidChange:(NSNotification *)notification;
@@ -62,7 +64,8 @@
 
 - (void)keyDown:(NSEvent *)theEvent
 {
-	if ([[self delegate] outlineView:self keyDown:theEvent] == NO) {
+	OutlineViewController *delegate = [self delegate];
+	if ([delegate outlineView:self keyDown:theEvent] == NO) {
 		[super keyDown:theEvent];
 	}
 }
@@ -70,7 +73,8 @@
 - (void)drawRow:(NSInteger)rowIndex clipRect:(NSRect)clipRect
 {
 	if (![self isRowSelected:rowIndex]) {
-		NSColor		*bg = [(id <NSOutlineViewDelegate>)[self delegate] outlineView:self backgroundColorForRow:rowIndex];
+		OutlineViewController *delegate = [self delegate];
+		NSColor		*bg = [delegate outlineView:self backgroundColorForRow:rowIndex];
 		if (bg) {
 			[NSGraphicsContext saveGraphicsState];
 			[bg set];

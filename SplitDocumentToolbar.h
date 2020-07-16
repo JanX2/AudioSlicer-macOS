@@ -25,7 +25,7 @@
 
 @class SplitDocument;
 
-@interface SplitDocumentToolbar : NSObject {
+@interface SplitDocumentToolbar : NSObject <NSToolbarDelegate> {
 	NSToolbar					*documentToolbar;
 	SplitDocument				*document;
 	

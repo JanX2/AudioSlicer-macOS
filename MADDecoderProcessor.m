@@ -153,7 +153,7 @@ static enum mad_flow mad_error_callback(void *data, struct mad_stream *stream, s
 				id3TagSize += (id3SizeFields[1] << (2 * 7));
 				id3TagSize += (id3SizeFields[2] << (1 * 7));
 				id3TagSize += (id3SizeFields[3] << (0 * 7));
-				NSLog(@"skipping ID3v2 frame of size %lu", id3TagSize);
+				NSLog(@"skipping ID3v2 frame of size %u", id3TagSize);
 				mad_stream_skip(stream, id3TagSize);
 				return MAD_FLOW_CONTINUE;   // continue decoding normally
 			} else if (!strncmp((const char *) stream->this_frame, "TAG", 3)) {
@@ -166,21 +166,21 @@ static enum mad_flow mad_error_callback(void *data, struct mad_stream *stream, s
 			}
 			
 		case MAD_ERROR_BADCRC:
-			NSLog(@"bad crc error 0x%04x (%s) at byte offset %u",
+			NSLog(@"bad crc error 0x%04x (%s) at byte offset %ld",
 				  stream->error, mad_stream_errorstr(stream), stream->this_frame - (uint8_t *)[[decoder mp3Data] bytes]);
 			badFrameCount++;
 			return MAD_FLOW_IGNORE;      // skip the rest of the current frame
 			
 		case MAD_ERROR_BADDATAPTR:
 			if (!frameResyncing) {
-				NSLog(@"frame resyncing error 0x%04x (%s) at byte offset %u",
+				NSLog(@"frame resyncing error 0x%04x (%s) at byte offset %ld",
 					  stream->error, mad_stream_errorstr(stream), stream->this_frame - (uint8_t *)[[decoder mp3Data] bytes]);
 				badFrameCount++;
 			}
 			return MAD_FLOW_CONTINUE;    // continue decoding normally
 			
 		default:
-			NSLog(@"decoding error 0x%04x (%s) at byte offset %u",
+			NSLog(@"decoding error 0x%04x (%s) at byte offset %ld",
 				  stream->error, mad_stream_errorstr(stream), stream->this_frame - (uint8_t *)[[decoder mp3Data] bytes]);
 			badFrameCount++;
 			return MAD_FLOW_CONTINUE;    // continue decoding normally
@@ -375,7 +375,7 @@ static enum mad_flow mad_error_callback(void *data, struct mad_stream *stream, s
 	[super dealloc];
 }
 
-- (void)setSilenceVolumeThreshold:(NSInteger)threshold
+- (void)setSilenceVolumeThreshold:(int)threshold
 {
 	silenceVolumeThreshold = threshold;
 }

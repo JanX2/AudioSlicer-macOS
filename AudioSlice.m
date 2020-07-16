@@ -406,7 +406,7 @@ NSString *AudioSliceDidChangeNotification = @"AudioSliceDidChangeNotification";
 - (void)setYear:(int)aYear
 {
 	if (year != aYear) {
-		[[[self undoManager] prepareWithInvocationTarget:self] setYear:year];
+		[(typeof(self))[[self undoManager] prepareWithInvocationTarget:self] setYear:year];
 		[[self undoManager] setActionName:@"Change Year"];
 		
 		year = aYear;

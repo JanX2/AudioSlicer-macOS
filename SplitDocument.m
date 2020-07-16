@@ -812,7 +812,7 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 		}
 		
 		if ([[NSFileManager defaultManager] fileExistsAtPath:filePath] && overwriteAll == NO) {
-			NSInteger result = NSRunAlertPanel(@"File Exists", [NSString stringWithFormat:@"The File '%@' exists already. Do you really want to go on and overwrite it?", filePath],
+			NSInteger result = NSRunAlertPanel(@"File Exists", @"%@", [NSString stringWithFormat:@"The File '%@' exists already. Do you really want to go on and overwrite it?", filePath],
 										 @"Cancel", @"Overwrite All", @"Overwrite");
 			if (result == NSAlertDefaultReturn) {
 				break;
@@ -832,8 +832,8 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 - (NSString *)filenameUsingFormat:(NSString *)format forSlice:(AudioSlice *)slice
 {
 	NSMutableString		*name = [[format mutableCopy] autorelease];
-	NSUInteger			trackNumberDigits = [(NSString *)[NSString stringWithFormat:@"%ld", [slice trackCount]] length];
-	NSUInteger			cdNumberDigits = [(NSString *)[NSString stringWithFormat:@"%ld", [slice cdCount]] length];
+	NSUInteger			trackNumberDigits = [(NSString *)[NSString stringWithFormat:@"%d", [slice trackCount]] length];
+	NSUInteger			cdNumberDigits = [(NSString *)[NSString stringWithFormat:@"%d", [slice cdCount]] length];
 	NSString			*key;
 	NSEnumerator		*keys = [[NSArray arrayWithObjects:@"title", @"artist", @"album", @"composer", @"genre", @"year",
 														   @"trackNumber", @"trackCount", @"cdNumber", @"cdCount",
