@@ -337,6 +337,7 @@
 		73AEE90E0ACEDA5400C21CD6 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 			};
 			name = Development;
 		};
@@ -346,6 +347,7 @@
 				GCC_VERSION_ppc = 3.3;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.3;
 				SDKROOT_ppc = /Developer/SDKs/MacOSX10.3.9.sdk;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 			};
 			name = Deployment;
 		};
