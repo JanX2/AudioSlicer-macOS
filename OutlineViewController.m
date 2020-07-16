@@ -388,7 +388,9 @@
 		}
 	}
 	
-	[outlineView reloadItem:item];
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[outlineView reloadItem:item];
+	});
 }
 
 #pragma mark -
@@ -590,7 +592,9 @@
 	id  item = itemPlaying;
 	itemPlaying = nil;
 	if (item) {
-		[outlineView reloadItem:item];
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[outlineView reloadItem:item];
+		});
 	}
 }
 
@@ -626,14 +630,16 @@
 	
 	id  sender = [notification object];
 	
-	if ([[notification name] isEqualToString:AudioSegmentTreeDidChangeNotification]) {
-		NSArray *selection = [self selectedItems];
-		[self reloadOutlineView];
-		[self selectItems:selection];
-	} else if ([[notification name] isEqualToString:AudioSliceDidChangeNotification]) {
-		[outlineView removeAllToolTips];
-		[outlineView reloadItem:sender];
-	}
+	dispatch_async(dispatch_get_main_queue(), ^{
+		if ([[notification name] isEqualToString:AudioSegmentTreeDidChangeNotification]) {
+			NSArray *selection = [self selectedItems];
+			[self reloadOutlineView];
+			[self selectItems:selection];
+		} else if ([[notification name] isEqualToString:AudioSliceDidChangeNotification]) {
+			[outlineView removeAllToolTips];
+			[outlineView reloadItem:sender];
+		}
+	});
 }
 
 @end
