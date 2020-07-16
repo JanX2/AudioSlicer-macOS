@@ -184,7 +184,7 @@
 	// find insert position
 	IMP		impComparator = [anObject methodForSelector:@selector(compare:)];
 	for (n = header, i = level; i >= 0; i--) {
-		while (n->forward[i] && (NSComparisonResult)impComparator(n->forward[i]->obj, @selector(compare:), anObject) == NSOrderedAscending) {
+		while (n->forward[i] && (NSComparisonResult)((id (*)(id, SEL, id))impComparator)(n->forward[i]->obj, @selector(compare:), anObject) == NSOrderedAscending) {
 			n = n->forward[i];
 		}
 		update[i] = n;
@@ -229,7 +229,7 @@
 	// we assume all elements are of same class
 	IMP		impComparator = [anObject methodForSelector:@selector(compare:)];
 	for (n = header, i = level; i >= 0; i--) {
-		while (n->forward[i] && (NSComparisonResult)impComparator(n->forward[i]->obj, @selector(compare:), anObject) == NSOrderedAscending) {
+		while (n->forward[i] && (NSComparisonResult)((id (*)(id, SEL, id))impComparator)(n->forward[i]->obj, @selector(compare:), anObject) == NSOrderedAscending) {
 			n = n->forward[i];
 		}
 		update[i] = n;
@@ -310,7 +310,7 @@
 	
 	list2->level = list1->level;
 	for (NSInteger i = list1->level; i >= 0; i--) {
-		while (n->forward[i] && (NSComparisonResult)impComparator(n->forward[i]->obj, @selector(compare:), splitObject) == NSOrderedAscending) {
+		while (n->forward[i] && (NSComparisonResult)((id (*)(id, SEL, id))impComparator)(n->forward[i]->obj, @selector(compare:), splitObject) == NSOrderedAscending) {
 			n = n->forward[i];
 		}
 		list2->header->forward[i] = n->forward[i];
