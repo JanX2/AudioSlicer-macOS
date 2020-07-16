@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -125,15 +125,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		2A37F4ACFDCFA73011CA2CEA /* SplitDocument.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SplitDocument.m; sourceTree = "<group>"; };
 		2A37F4AEFDCFA73011CA2CEA /* SplitDocument.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SplitDocument.h; sourceTree = "<group>"; };
 		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2A37F4B5FDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/SplitDocument.nib; sourceTree = "<group>"; };
-		2A37F4B7FDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
-		2A37F4BAFDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		32DBCF750370BD2300C91783 /* AudioSlicer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioSlicer_Prefix.pch; sourceTree = "<group>"; };
+		3D03626024C075DE006E9D1C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		3D03626124C075DE006E9D1C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D03626224C075DE006E9D1C /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/Inspector.nib; sourceTree = "<group>"; };
+		3D03626324C075DE006E9D1C /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		3D03626424C075DE006E9D1C /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/Preferences.nib; sourceTree = "<group>"; };
+		3D03626524C075DE006E9D1C /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/ProgressPanel.nib; sourceTree = "<group>"; };
+		3D03626624C075DE006E9D1C /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/SplitDocument.nib; sourceTree = "<group>"; };
 		3DD87BD724BF32800038DCE6 /* taglib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = taglib.framework; path = Frameworks/taglib.framework; sourceTree = "<group>"; };
 		3DD87BD824BF32800038DCE6 /* mad.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mad.framework; path = Frameworks/mad.framework; sourceTree = "<group>"; };
 		73032C6005DF825500899B94 /* AudioSegmentTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioSegmentTree.h; sourceTree = "<group>"; };
@@ -176,7 +179,6 @@
 		73912EC505FB786C00C567C8 /* SplitDocumentToolbarExportButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = SplitDocumentToolbarExportButton.tiff; path = Resources/SplitDocumentToolbarExportButton.tiff; sourceTree = "<group>"; };
 		73912ED605FB913100C567C8 /* SplitDocumentToolbarNextSilenceButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = SplitDocumentToolbarNextSilenceButton.tiff; path = Resources/SplitDocumentToolbarNextSilenceButton.tiff; sourceTree = "<group>"; };
 		73912ED705FB913100C567C8 /* SplitDocumentToolbarPrevSilenceButton.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = SplitDocumentToolbarPrevSilenceButton.tiff; path = Resources/SplitDocumentToolbarPrevSilenceButton.tiff; sourceTree = "<group>"; };
-		7394AF2705F0AB7F00D74021 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Inspector.nib; sourceTree = "<group>"; };
 		7394AF8705F0ED7E00D74021 /* AudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFile.h; sourceTree = "<group>"; };
 		7394AF8805F0ED7E00D74021 /* AudioFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFile.m; sourceTree = "<group>"; };
 		7397A1470ACFE5C600D99535 /* MADDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADDecoder.h; sourceTree = "<group>"; };
@@ -194,14 +196,12 @@
 		73AEE97F0ACEDAAE00C21CD6 /* IntervalSlider.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IntervalSlider.xcodeproj; path = IntervalSlider/IntervalSlider.xcodeproj; sourceTree = "<group>"; };
 		73B4A39F05ED68A0008353DC /* ProgressPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressPanel.h; sourceTree = "<group>"; };
 		73B4A3A005ED68A0008353DC /* ProgressPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressPanel.m; sourceTree = "<group>"; };
-		73B4A3A605ED6918008353DC /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/ProgressPanel.nib; sourceTree = "<group>"; };
 		73BE032805EE94E900973E73 /* AudioSegmentOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioSegmentOutlineView.h; sourceTree = "<group>"; };
 		73BE032905EE94E900973E73 /* AudioSegmentOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioSegmentOutlineView.m; sourceTree = "<group>"; };
 		73D7B83B05F5E64100156527 /* IntervalSlider.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = IntervalSlider.h; path = IntervalSlider/IntervalSlider.h; sourceTree = "<group>"; };
 		73D7B83C05F5E64100156527 /* IntervalSlider.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = IntervalSlider.m; path = IntervalSlider/IntervalSlider.m; sourceTree = "<group>"; };
 		73D7B83D05F5E64100156527 /* IntervalSliderCell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = IntervalSliderCell.h; path = IntervalSlider/IntervalSliderCell.h; sourceTree = "<group>"; };
 		73D7B83E05F5E64100156527 /* IntervalSliderCell.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = IntervalSliderCell.m; path = IntervalSlider/IntervalSliderCell.m; sourceTree = "<group>"; };
-		73D7CBBD05F49EE700094FB5 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Preferences.nib; sourceTree = "<group>"; };
 		73D7CBC105F49F8500094FB5 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
 		73D7CBC205F49F8500094FB5 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		73D7CBD905F4C6D900094FB5 /* ClippingNumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClippingNumberFormatter.h; sourceTree = "<group>"; };
@@ -472,6 +472,7 @@
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 1200;
 			};
 			buildConfigurationList = 73DE30BF0876D02F006EC03A /* Build configuration list for PBXProject "AudioSlicer" */;
 			compatibilityVersion = "Xcode 2.4";
@@ -480,7 +481,6 @@
 			knownRegions = (
 				en,
 				Base,
-				English,
 			);
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* AudioSlicer */;
 			projectDirPath = "";
@@ -592,7 +592,7 @@
 		089C165FFE840EACC02AAC07 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				089C1660FE840EACC02AAC07 /* English */,
+				3D03626124C075DE006E9D1C /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -600,7 +600,7 @@
 		2A37F4B4FDCFA73011CA2CEA /* SplitDocument.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2A37F4B5FDCFA73011CA2CEA /* English */,
+				3D03626624C075DE006E9D1C /* en */,
 			);
 			name = SplitDocument.nib;
 			sourceTree = "<group>";
@@ -608,7 +608,7 @@
 		2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2A37F4B7FDCFA73011CA2CEA /* English */,
+				3D03626324C075DE006E9D1C /* en */,
 			);
 			name = MainMenu.nib;
 			sourceTree = "<group>";
@@ -616,7 +616,7 @@
 		2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2A37F4BAFDCFA73011CA2CEA /* English */,
+				3D03626024C075DE006E9D1C /* en */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
@@ -624,7 +624,7 @@
 		7394AF2605F0AB7F00D74021 /* Inspector.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7394AF2705F0AB7F00D74021 /* English */,
+				3D03626224C075DE006E9D1C /* en */,
 			);
 			name = Inspector.nib;
 			sourceTree = "<group>";
@@ -632,7 +632,7 @@
 		73B4A3A505ED6918008353DC /* ProgressPanel.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				73B4A3A605ED6918008353DC /* English */,
+				3D03626524C075DE006E9D1C /* en */,
 			);
 			name = ProgressPanel.nib;
 			sourceTree = "<group>";
@@ -640,7 +640,7 @@
 		73D7CBBC05F49EE700094FB5 /* Preferences.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				73D7CBBD05F49EE700094FB5 /* English */,
+				3D03626424C075DE006E9D1C /* en */,
 			);
 			name = Preferences.nib;
 			sourceTree = "<group>";
@@ -651,11 +651,12 @@
 		73DE30BC0876D02F006EC03A /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -672,6 +673,7 @@
 					"-liconv",
 					"-lz",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.audioslicer;
 				PRODUCT_NAME = AudioSlicer;
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -685,10 +687,11 @@
 		73DE30BD0876D02F006EC03A /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -704,6 +707,7 @@
 					"-liconv",
 					"-lz",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.audioslicer;
 				PRODUCT_NAME = AudioSlicer;
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -718,8 +722,35 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Development;
 		};
@@ -727,7 +758,32 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 			};
 			name = Deployment;
