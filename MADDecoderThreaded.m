@@ -206,11 +206,11 @@ static void *runProcessorThreaded(void *processor);
 
 void *runProcessorThreaded(void *processor)
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	NSInteger result;
 	
-	NSInteger result = [(MADDecoderProcessor *)processor runDecoder];
-	
-	[pool release];
+	@autoreleasepool {
+		result = [(MADDecoderProcessor *)processor runDecoder];
+	}
 	
 	return (void *)result;
 }

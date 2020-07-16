@@ -154,36 +154,34 @@
 
 - (void)testReaderThread:(id)obj
 {
-	NSAutoreleasePool   *pool = [[NSAutoreleasePool alloc] init];
 	size_t				len;
 	void				*ptr = malloc(1024);
 	
 	while (1) {
-		if ((len = [self readDataInto:ptr length:1024])) {
-			NSLog(@"read from buffer: (%zu) %@", len, [NSString stringWithCString:ptr length:len]);
-			for (NSInteger i = 1; i < len; i++) {
-				char	c1 = ((char *)ptr)[i - 1];
-				char	c2 = ((char *)ptr)[i];
-				NSAssert((c1 + 1 == c2) || (c1 == '8' && c2 == '1'), @"ERROR");
+		@autoreleasepool {
+			if ((len = [self readDataInto:ptr length:1024])) {
+				NSLog(@"read from buffer: (%zu) %@", len, [NSString stringWithCString:ptr length:len]);
+				for (NSInteger i = 1; i < len; i++) {
+					char	c1 = ((char *)ptr)[i - 1];
+					char	c2 = ((char *)ptr)[i];
+					NSAssert((c1 + 1 == c2) || (c1 == '8' && c2 == '1'), @"ERROR");
+				}
 			}
 		}
 	}
-	
-	[pool release];
 }
 
 - (void)testWriterThread:(id)obj
 {
-	NSAutoreleasePool   *pool = [[NSAutoreleasePool alloc] init];
 	size_t				len = 8;
 	void				*ptr = "12345678";
 	
-	for (NSInteger i = 0; i < 100000; i++) {
-		[self writeData:ptr length:len];
-		NSLog(@"wrote to buffer: (%zu) %@", len, [NSString stringWithCString:ptr length:len]);
+	@autoreleasepool {
+		for (NSInteger i = 0; i < 100000; i++) {
+			[self writeData:ptr length:len];
+			NSLog(@"wrote to buffer: (%zu) %@", len, [NSString stringWithCString:ptr length:len]);
+		}
 	}
-	
-	[pool release];
 }
 
 @end
