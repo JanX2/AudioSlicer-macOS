@@ -141,7 +141,6 @@
 		73032C6605DF828C00899B94 /* AudioSegmentNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioSegmentNode.h; sourceTree = "<group>"; };
 		73032C6705DF828C00899B94 /* AudioSegmentNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioSegmentNode.m; sourceTree = "<group>"; };
 		730EA7180B0F492500102AEA /* AudioSlicer_User_Guide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = AudioSlicer_User_Guide.pdf; sourceTree = "<group>"; };
-		7315F7470ACEA91A00696133 /* libbuilder.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; name = libbuilder.sh; path = Frameworks/libbuilder.sh; sourceTree = "<group>"; };
 		7332910905DA975500BFB594 /* PCMAudioBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCMAudioBuffer.h; sourceTree = "<group>"; };
 		7332910A05DA975500BFB594 /* PCMAudioBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCMAudioBuffer.m; sourceTree = "<group>"; };
 		73363FF505FBA92300E5C811 /* SegmentTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentTitleCell.h; sourceTree = "<group>"; };
@@ -277,7 +276,6 @@
 		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				7315F7470ACEA91A00696133 /* libbuilder.sh */,
 				32DBCF750370BD2300C91783 /* AudioSlicer_Prefix.pch */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
 			);
