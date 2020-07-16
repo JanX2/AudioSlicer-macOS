@@ -297,7 +297,6 @@ NSString *AudioSegmentTreeDidChangeNotification = @"AudioSegmentTreeDidChangeNot
 		}
 	}
 	
-#warning 64BIT: Check formatting arguments
 	[NSException raise:NSInternalInconsistencyException format:@"indexOfSliceForAudioSegment: didn't find node in any split segment"];
 	return -1;
 }
@@ -440,13 +439,11 @@ NSString *AudioSegmentTreeDidChangeNotification = @"AudioSegmentTreeDidChangeNot
 - (NSString *)description
 {
 	NSMutableString *string = [[NSMutableString alloc] init];
-	NSInteger				i, j;
+	NSUInteger				i, j;
 	
-#warning 64BIT: Check formatting arguments
-	[string appendFormat:@"Root node has %d audio segment nodes:\n", [rootNode numberOfChildren]];
+	[string appendFormat:@"Root node has %lu audio segment nodes:\n", [rootNode numberOfChildren]];
 	for (i = 0; i < [rootNode numberOfChildren]; i++) {
-#warning 64BIT: Check formatting arguments
-		[string appendFormat:@"%d: %@\n", i, [[rootNode childAtIndex:i] description]];
+		[string appendFormat:@"%lu: %@\n", i, [[rootNode childAtIndex:i] description]];
 	}
 	
 	NSInteger		silences[200];

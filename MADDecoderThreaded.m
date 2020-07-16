@@ -73,7 +73,6 @@ static void *runProcessorThreaded(void *processor);
 	// set up the processors
 	numProcessors = [self numProcessorCores];
 	processors = (MADDecoderSilenceAnalyzer **) malloc(sizeof(MADDecoderSilenceAnalyzer *) * numProcessors);
-#warning 64BIT: Inspect use of sizeof
 	processorThreads = (pthread_t *) malloc(sizeof(pthread_t) * numProcessors);
 	progressValues = (double *) malloc(sizeof(double) * numProcessors);
 	

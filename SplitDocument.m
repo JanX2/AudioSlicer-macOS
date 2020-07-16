@@ -462,17 +462,14 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 		
 		NSString	*prefix = [startName substringToIndex:numberRange.location];
 		NSString	*suffix = [startName substringFromIndex:numberRange.location + numberRange.length];
-		NSInteger			index = [[startName substringWithRange:numberRange] integerValue];
-#warning 64BIT: Check formatting arguments
-		NSString	*format = [NSString stringWithFormat:@"%%0%dd", [[NSUserDefaults standardUserDefaults] integerForKey:@"RenameSeriallyPaddingLength"]];
+		NSInteger	index = [[startName substringWithRange:numberRange] integerValue];
+		NSString	*format = [NSString stringWithFormat:@"%%0%ldd", (long)[[NSUserDefaults standardUserDefaults] integerForKey:@"RenameSeriallyPaddingLength"]];
 		
 		NSEnumerator	*slices = [[self sliceSelection] objectEnumerator];
 		AudioSlice		*slice;
 		while (slice = [slices nextObject]) {
-#warning 64BIT: Check formatting arguments
 			[slice setTitle:[NSString stringWithFormat:@"%@%@%@",
 				prefix,
-#warning 64BIT: Check formatting arguments
 				[NSString stringWithFormat:format, index++],
 				suffix]];
 		}

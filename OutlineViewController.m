@@ -62,8 +62,7 @@
 	
 	[outlineView setAutosaveTableColumns:YES];
 	[outlineView setAutosaveName:@"OutlineView"];
-#warning 64BIT: Check formatting arguments
-	[outlineView setAutosaveName:[NSString stringWithFormat:@"OutlineView-%u", [document documentID]]];
+	[outlineView setAutosaveName:[NSString stringWithFormat:@"OutlineView-%lu", [document documentID]]];
 	
 	[outlineView setTarget:self];
 	[outlineView setDoubleAction:@selector(playButtonClicked:)];
