@@ -268,7 +268,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -288,7 +287,6 @@
 				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-bundle";
-				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = IntervalSlider;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -297,7 +295,6 @@
 					"-Wno-unknown-pragmas",
 				);
 				WRAPPER_EXTENSION = palette;
-				ZERO_LINK = YES;
 			};
 			name = Development;
 		};
@@ -321,7 +318,6 @@
 				LIBRARY_STYLE = Bundle;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-bundle";
-				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = IntervalSlider;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -330,7 +326,6 @@
 					"-Wno-unknown-pragmas",
 				);
 				WRAPPER_EXTENSION = palette;
-				ZERO_LINK = NO;
 			};
 			name = Deployment;
 		};
@@ -344,9 +339,6 @@
 		73AEE90F0ACEDA5400C21CD6 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_VERSION_ppc = 3.3;
-				MACOSX_DEPLOYMENT_TARGET_ppc = 10.3;
-				SDKROOT_ppc = /Developer/SDKs/MacOSX10.3.9.sdk;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 			};
 			name = Deployment;
