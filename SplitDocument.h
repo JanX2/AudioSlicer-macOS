@@ -31,7 +31,7 @@
 #import "SplitDocumentToolbar.h"
 #import "ProgressPanel.h"
 
-@interface SplitDocument : NSDocument {
+@interface SplitDocument : NSDocument <NSWindowDelegate> {
 	IBOutlet OutlineViewController		*outlineViewController;
 	IBOutlet NSOutlineView				*outlineView;
 	

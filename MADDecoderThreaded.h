@@ -36,6 +36,6 @@
 	NSLock						*syncLock;
 }
 
-- (NSInteger)numProcessorCores;
+- (NSUInteger)numProcessorCores;
 
 @end

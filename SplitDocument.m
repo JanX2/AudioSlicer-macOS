@@ -116,7 +116,7 @@ NSString	*SplitDocumentContinuousControlFinishedNotification = @"SplitDocumentCo
 	[silenceRangeSlider setMinValue:[audioSegmentTree shortestSilenceInTree]];
 	[silenceRangeSlider setMaxValue:[audioSegmentTree longestSilenceInTree]];
 	
-	genreList = [[[audioFile class] genreList] retain];
+	genreList = (NSMutableArray *)[[[audioFile class] genreList] retain];
 	
 	toolbar = [[SplitDocumentToolbar alloc] initWithDocument:self];
 	

@@ -68,7 +68,7 @@ static void *runProcessorThreaded(void *processor);
 #pragma mark -
 
 
-- (NSInteger)analyzeSilencesWithVolumeThreshold:(NSInteger)volumeThreshold durationThreshold:(double)durationThreshold
+- (NSUInteger)analyzeSilencesWithVolumeThreshold:(NSInteger)volumeThreshold durationThreshold:(double)durationThreshold
 {
 	// set up the processors
 	numProcessors = [self numProcessorCores];
